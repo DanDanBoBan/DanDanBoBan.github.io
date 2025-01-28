@@ -1,598 +1,633 @@
-<html>
-  <style>
-    div {
-      background-color: lightblue;
-    }
-    div.collapsed {
-      display: none;
-    }
-    div.note {
-      background-color: red;
-      border-color: black;
-      margin: 10;
-    }
-    div.project {
-      background-color: green;
-      margin: 10;
-    }
-    div.stint {
-      background-color: blue;
-    }
-  </style>
-  hello world
-
-  <script>
-    companies = [
-      {
-        id: "coDemiurge",
-        objectType: "company",
-        label: "Demiurge Studios",
-        location: "Boston, MA",
-      },
-      {
-        id: "coHarmonix",
-        objectType: "company",
-        label: "Harmonix Music Systems",
-        location: "Boston, MA",
-      },
-      {
-        id: "coInsomniac",
-        objectType: "company",
-        label: "Insomniac Games",
-        location: "Burbank, CA",
-      },
-    ];
-
-    stints = [
-      {
-        id: "demiurgeStintB",
-        objectType: "stint",
-        companyId: "coDemiurge",
-        label: "Demiurge (Second Stint)",
-        dateBeginMonth: "June",
-        dateBeginYear: 2021,
-        dateEndMonth: "April",
-        dateEndYear: 2024,
-        role: "Game Designer II",
-      },
-      {
-        id: "harmonixStintA",
-        objectType: "stint",
-        companyId: "coHarmonix",
-        dateBeginMonth: "March",
-        dateBeginYear: 2016,
-        dateEndMonth: "May",
-        dateEndYear: 2021,
-        role: "Technical Designer",
-      },
-      {
-        id: "insomniacStintA",
-        objectType: "stint",
-        companyId: "coInsomniac",
-        dateBeginMonth: "November",
-        dateBeginYear: 2013,
-        dateEndMonth: "February",
-        dateEndYear: 2016,
-        role: "User Interface Builder",
-      },
-      {
-        id: "demiurgeStintA",
-        objectType: "stint",
-        companyId: "coDemiurge",
-        label: "Demiurge (First Stint)",
-        dateBeginMonth: "January",
-        dateBeginYear: 2006,
-        dateEndMonth: "March",
-        dateEndYear: 2013,
-        role: "Game Designer",
-      },
-    ];
-
-    projects = [
-      {
-        id: "projectOceanStealth",
-        stintId: "demiurgeStintB",
-        label: "MOBA Stealth and Cover",
-        summaryId: "projectOceanStealthSummary",
-      },
-      {
-        id: "projectOceanKits",
-        stintId: "demiurgeStintB",
-        label: "Player Kit Abilities",
-        summaryId: "projectOceanKitsSummary",
-      },
-      {
-        id: "projectCat",
-        stintId: "harmonixStintA",
-        label: "Unreleased Music Game",
-        role: "Input Collation and Data Routing using Unreal Blueprint",
-        summaryId: "projectCatSummary",
-      },
-      {
-        id: "projectFuser",
-        stintId: "harmonixStintA",
-        label: "Fuser",
-        role: "Gameplay Prototyping And UI Scripting",
-        summaryId: "projectFuserSummary",
-      },
-      {
-        id: "projectFeral",
-        stintId: "insomniacStintA",
-        label: "Feral Rites",
-        role: "User Interface Scripting",
-        summaryId: "projectFeralSummary",
-      },
-      {
-        id: "projectRatchet",
-        stintId: "insomniacStintA",
-        label: "Ratchet & Clank",
-        role: "User Interface Scripting",
-        summaryId: "projectRatchetSummary",
-      },
-      {
-        id: "projectSunset",
-        stintId: "insomniacStintA",
-        label: "Sunset Overdrive",
-        role: "User Interface Scripting",
-        summaryId: "projectSunsetSummary",
-      },
-      {
-        id: "projectBugHunt",
-        stintId: "demiurgeStintA",
-        label: "Aliens: Colonial Marines - Bug Hunt DLC",
-        role: "Encounter Scripting",
-        summaryId: "projectBugHuntSummary",
-      },
-      {
-        id: "projectStation",
-        stintId: "demiurgeStintA",
-        label: "Mass Effect: Pinnacle Station",
-        role: "Encounter Scripting",
-        summaryId: "projectStationSummary",
-      },
-      {
-        id: "projectSmr",
-        stintId: "demiurgeStintA",
-        label: "Shoot Many Robots",
-        role: "Encounter Scripting and Level Layout",
-        summaryId: "projectSmr",
-      },
-    ];
-    notes = [
-      {
-        id: "noteSmrA",
-        projectId: "projectSmr",
-        descId: "noteSmrAdesc",
-      },
-      {
-        id: "noteSmrB",
-        projectId: "projectSmr",
-        descId: "noteSmrBdesc",
-      },
-      {
-        id: "noteSmrC",
-        projectId: "projectSmr",
-        descId: "noteSmrCdesc",
-      },
-      {
-        id: "noteSmrD",
-        projectId: "projectSmr",
-        descId: "noteSmrDdesc",
-      },
-      {
-        id: "noteStationA",
-        projectId: "projectStation",
-        descId: "noteStationAdesc",
-      },
-      {
-        id: "noteStationB",
-        projectId: "projectStation",
-        descId: "noteStationBdesc",
-      },
-      {
-        id: "noteBugHuntA",
-        projectId: "projectBugHunt",
-        descId: "noteBugHuntAdesc",
-      },
-      {
-        id: "noteBugHuntB",
-        projectId: "projectBugHunt",
-        descId: "noteBugHuntBdesc",
-      },
-      {
-        id: "noteBugHuntC",
-        projectId: "projectBugHunt",
-        descId: "noteBugHuntCdesc",
-      },
-      { id: "noteSunsetA", projectId: "projectSunset" },
-      { id: "noteSunsetB", projectId: "projectSunset" },
-      { id: "noteSunsetC", projectId: "projectSunset" },
-      { id: "noteSunsetD", projectId: "projectSunset" },
-      { id: "noteSunsetE", projectId: "projectSunset" },
-      { id: "noteRatchetA", projectId: "projectRatchet" },
-      { id: "noteFeralA", projectId: "projectFeral" },
-      { id: "noteFeralB", projectId: "projectFeral" },
-      { id: "noteFuserA", projectId: "projectFuser" },
-      { id: "noteFuserB", projectId: "projectFuser" },
-      { id: "noteFuserC", projectId: "projectFuser" },
-    ];
-  </script>
-
-  <div id="content" class="collapsed">
-    <div id="projectOceanStealthSummary">
-      <p>
-        Using Unreal Blueprint, we explored how we might encourage players to
-        leverage different aspects of the environment in order to gain an
-        advantage over their enemies.
-      </p>
-      <p>
-        Our first pass involved tall-grass volumes that players could hide in in
-        order to toggle their visibility to the enemy. This was fine, but made
-        for very obvious jack-in-the-box locations.
-      </p>
-      <p>
-        The stealth element really began to shine when we gave players players
-        an opportunity to be more expressive with their sneaking. We allowed
-        them to hide themselves against low-cover and behind corners in order to
-        toggle their visibility from opponents on the opposite side of their
-        cover. This allowed them to stay hidden as they moved and pick the
-        angles that would protect them from damage.
-      </p>
-    </div>
-    <div id="projectOceanKitsSummary">
-      I was able to quickly whip up a bunch of new characters for the
-      aforementioned MOBA by quickly scripting new abilities for them using
-      Unreal Blueprint. The modular, component-based nature of their
-      construction made it easy to try out new kits that recombined features
-      from other characters. For example, we were quickly able to throw together
-      a burst-fire cone-damage sword attack by using components from our brawler
-      and SMG characters.
-    </div>
-    <div id="projectCatSummary">
-      <p>
-        This was mostly focused on ushering properties from data objects into
-        the correct widgets in the menus using the Unreal Motion Graphics tools.
-      </p>
-      <p>
-        I was particularly proud of the work I did to work I did to consolidate
-        input functionality into data assets in order to make input scripting
-        more consistent.
-      </p>
-    </div>
-    <div id="projectFuserSummary">
-      <p>
-        There was a really complex stretch at the beginning of Fuser where we
-        were trying develop a prototype that had the potential to be released on
-        a variety of platforms. We wanted to take the amazing music-mashing
-        technology that Harmonix’s engineers had developed for DropMix and
-        demonstrate it’s potential on Consoles and PC. We had to take the act of
-        grabbing a disc and smacking it onto a turntable feel satisfying in VR,
-        on a gamepad, and when using a keyboard/mouse. We ended up using a
-        virtual ‘hand’ that could be driven by whatever input device the player
-        was using.
-      </p>
-      <p>
-        Once the contract had been signed and the project entered production, I
-        helped with UI scripting - mostly surrounding populating text fields and
-        images with the appropriate data.
-      </p>
-    </div>
-    <div id="projectFeralSummary">
-      This was a fun exercise in figuring out how to place information panels in
-      a way that the player could explore them and find the information they
-      were looking for.
-    </div>
-    <div id="projectRatchetSummary">
-      I worked on the card collection screen. It was a fun opportunity to work
-      with Flash’s 3D functionality.
-    </div>
-    <div id="projectSunsetSummary">
-      Most of the work I did on Sunset Overdrive involved data plumbing and
-      input routing. Our engineer would pass data into the screens and I used it
-      to populate the correct fields. A significant chunk of time went into
-      ensuring that the leaderboards worked.
-    </div>
-    <div id="projectBugHuntSummary">
-      Bug Hunt is a wave-based, co-op PvE mode released for Aliens: Colonial
-      Marines. By the time I was brought onto the project, most of the level
-      layout was nearing completion. Most of the work I did involved scripting
-      enemy wave composition in the map “Tribute”. When the engineers were
-      swamped, I used Excel to smooth out some of the edges in the scripting
-      process to improve the workflow for the design team.
-    </div>
-    <div id="projectStationSummary">
-      I worked as a designer on the team that put together Mass Effect: Pinnacle
-      Station. The project provided a bunch of awesome opportunities to wrap my
-      head around the Unreal's Kismet scripting system. Whipping up prototypes
-      for each game mode ended up being a total blast. I also managed to rig up
-      much of the scoreboard system using kismet. It was cool getting to kick
-      around in BioWare's conversation tools, which I used to set up the mission
-      selection conversation.
-    </div>
-    <div id="projectSmr">
-      The level design work that I did on Shoot Many Robots was primarily
-      focused on the survival missions. These missions were wave-based, PvE
-      arena battles for a side-scrolling shoot-em-up. I started each level with
-      a graybox level. On each level I focused on the expected theme for the
-      paths that players would be taking throughout the space. For example, in
-      some levels they would be following a shallow up-and-down pattern. In
-      others, they would be diving into deep trenches and then battling their
-      way back up.
-    </div>
-    <div id="noteFuserAdesc">
-      The Crate Creation Screen is where the player would build a loadout of the
-      music-creation content that they would be bringing into the game. This
-      screen features a good example of a tab list. I did a bunch of work to
-      make it easier for artists and scripters to change those on the fly in a
-      consistent and human-error-resistant way. I did most of the scripting on
-      the song-selection tab. Blueprint Scripting: Me and the programmers at
-      Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
-      Team
-    </div>
-    <div id="noteFuserBdesc">
-      The main menu for fuser. It features a skeleton footprint for each element
-      that requires data to be fetched dynamically from the server. I
-      coordinated with the artists in the efforts to systemize the behavior of
-      panels that needed a skeleton to ensure consistent styling and
-      functionality. Blueprint Scripting: Me and the programmers at Harmonix /
-      Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
-    </div>
-    <div id="noteFuserCdesc">
-      Fuser's settings screen. For some reason, finding good ways to organize
-      settings data and widgets is super satisfying for me. Blueprint Scripting:
-      Me and the programmers at Harmonix / Code Hooks: Harmonix Engineers / Art
-      and UX: Harmonix UI Art Team
-    </div>
-    <div id="noteFeralAdesc">
-      The Shop Screen that I helped build on Feral Rites. The panels are all
-      angled toward the player, similar to the way one might rotate their
-      screens in a multi-monitor setup. I did the majority of the scripting on
-      this screen. I also built the 3D model that the menu was projected on. I
-      laid out the panels in Flash to work as a UV map for the menu mesh.
-      ActionScript: Me, until I left Insomniac. Wrapped up by Insomniac East, I
-      believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI
-      Art Team
-    </div>
-    <div id="noteFeralBdesc">
-      An additional confirmation panel that pops up when you want to buy
-      something at The Shop Screen. ActionScript: Me, until I left Insomniac.
-      Wrapped up by Insomniac East, I believe. / Code Hooks: Insomniac UI
-      Engineers / Art and UX: Insomniac UI Art Team
-    </div>
-    <div id="noteRatchetAdesc">
-      The Card Collection screen from Ratchet & Clank (2016). Players were able
-      to a collection of holocards they had collected. Each completed set of
-      cards provided the player with a gameplay bonus. ActionScript: Me, and
-      also some UI Engineers at Insomniac East / Code Hooks: Insomniac UI
-      Engineers / Art and UX: Insomniac UI Art Team
-    </div>
-    <div id="noteSunsetAdesc">
-      The Challenge Browser Screen combined some of the most complicated screen
-      elements I worked on. The map needed to pan to the correct location, and
-      the leaderboards needed to talk to the code to coordinate retrieval of the
-      correct leaderboard data. ActionScript (Navigation, calling hooks): Me. /
-      Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI Art Team.
-    </div>
-    <div id="noteSunsetBdesc">
-      The Mission Results Screen. Mostly a matter of routing data passed in from
-      code into the appropriate UI elements. ActionScript: Me. / Code Hooks:
-      Insomniac UI Engineers / Art, UX: Insomniac UI Art Team
-    </div>
-    <div id="noteSunsetCdesc">
-      Two-Hat Jack is a shop where the player can purchase ammo and new weapons.
-      ActionScript: Me. / Code Hooks: Insomniac UI Engineers / Art and UX:
-      Insomniac UI Art Team
-    </div>
-    <div id="noteSunsetDdesc">
-      I ended up implementing a bunch of the tutorials for the menu screens. The
-      amps tutorial was particularly gnarly because it forced us to fix a bunch
-      of corner cases that would soft-lock the player's save if they managed to
-      mash the controls at the precisely wrong moment. Amps Tutorial Flow
-      ActionScript: Me. / Code Hooks: Insomniac UI Engineers / Art and UX:
-      Insomniac UI Art Team
-    </div>
-    <div id="noteSunsetEdesc">
-      Once the HUD messages were gray-boxed, I helped to migrate in the art from
-      the concepts that our Artists had created. ActionScript: Me. / Code Hooks:
-      Insomniac UI Engineers / Art and UX: Insomniac UI Art Team
-    </div>
-    <div id="noteBugHuntAdesc">
-      A hallway on the lower level of the "Tribute" map. A bunch of effort went
-      into making sure the spawn points in the vents were positioned just right
-      so that players couldn't fall into the vents, but the aliens could still
-      climb out. Level Geo: Demiurge Art and Design team / Level Markup: Me /
-      Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
-    </div>
-    <div id="noteBugHuntBdesc">
-      A scene from later in the "Tribute" map. As players progress through the
-      various waves, we started introducing stronger variants of each xenomorph
-      class. These stronger variants were distinguishable by meshes attached to
-      their base meshes. Level Geo: Demiurge Art and Design team / Level Markup:
-      Me / Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art
-      Team
-    </div>
-    <div id="noteBugHuntCdesc">
-      An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
-      around the levels, the xenomorphs used hand-authored grip points. The grip
-      points served as a great way to prevent the player from just turtling up
-      in a corner, as an alien could come bounding over a stack of boxes at any
-      moment. Level Geo: Demiurge Art and Design team / Level Markup: Me / Code:
-      Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
-    </div>
-    <div id="noteStationAdesc">
-      A screenshot of the capture-and-hold game mode built for Pinnacle Station.
-      I built the game mode logic graphs in Kismet 3, and we just had to
-      copy-paste them for each instance of the game mode that we used. Level
-      Geo: Demiurge Art and Design team / Game Mode Scripting: Me / Code:
-      Demiurge and BioWare Engineers / Game Art: BioWare Art Team and Demiurge
-      Art Team
-    </div>
-    <div id="noteStationBdesc">
-      Building the results screen was super tricky! We didn't have access to any
-      of the usual UI construction tools, so we had to basically just bake our
-      text into textures, and then swap out the textures used in the materials
-      on a series of planes attached to the camera. Level Geo: Demiurge Art and
-      Design team / UI Construction: Me / Code: Demiurge and BioWare Engineers /
-      UI Art and UX: Demiurge and BioWare UI Art Teams
-    </div>
-    <div id="noteSmrAdesc">
-      The first survival mission that I worked on, 'Farmland Siege' also ended
-      up being my favorite. It has two nice bowl-shaped arenas on either side of
-      the map divided by a hill in the center. The platforms are positioned in a
-      way that not only allows enemies to fire from an elevated position, but
-      also gives the map a nice figure-eight path. Once the first blockout was
-      completed, one of our artists jazzed up the surrounding environment with
-      additional props and lighting.
-    </div>
-    <div id="noteSmrBdesc">
-      'Outskirts Ambush' flanks the player with enemies and drives them to the
-      center hill. The center hill provides two major combat moments: battling
-      one's way up the hill to attack enemies on the left, and leaping across
-      the hill into the fray on the right. After the initial geo pass, art added
-      some awesome props, lighting and animated life to the background.
-    </div>
-    <div id="noteSmrCdesc">
-      'Cliffs Survival' makes a little more use of vertical space. Stationary
-      ranged enemies and fliers fire down at the player, luring the player up
-      across the platforms to engage them. Once the initial geo blockout was
-      done, an artist raised the snazz level with additional props and lighting.
-      Our lead designer also took a pass, adding in the interactive objects that
-      can be detonated to damage the robots.
-    </div>
-    <div id="noteSmrDdesc">
-      My goal in 'Downtown Roadblock' was to cycle players toward the edges of
-      the map, up onto the platforms and then back into the center. Ranged
-      enemies drive the player under the ledges the edges of the map, and then
-      surges of melee enemies from below chase the players up and out. After an
-      initial graybox and rough prop placement, one of our artists did an
-      awesome art pass on the props and lighting.
-    </div>
-  </div>
-
-  <div id="templates" class="collapsed">
-    <div id="templateNote">
-      <div id="%ID%" class="note">%DESC%</div>
-    </div>
-    <div id="templateProject">
-      <div id="%ID%" class="project">
-        <div class="project">%LABEL%</div>
-        <div class="project">%NOTES%</div>
-      </div>
-    </div>
-    <div id="templateStint">
-      <div id="%ID%" class="stint">
-        <div class="stint">%LABEL%</div>
-        <div class="stint">%PROJECTS%</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="demo"></div>
-  <script>
-    function ReplaceAll(wholeString, key, replacement) {
-      //https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
-      return wholeString.split(key).join(replacement);
-    }
-    demoDivElement = document.getElementById("demo");
-
-    noteTemplateString = document.getElementById("templateNote").innerHTML;
-    console.log(noteTemplateString);
-    projectTemplateString =
-      document.getElementById("templateProject").innerHTML;
-    stintTemplateString = document.getElementById("templateStint").innerHTML;
-    companyIndicesById = [];
-    stintIndicesById = [];
-    projectIndicesById = [];
-    noteIndicesById = [];
-
-    for (companyIndex in companies) {
-      companyId = companies[companyIndex].id;
-      companyIndicesById[companyId] = companyIndex;
-      companies[companyIndex].stintIds = [];
-      companies[companyIndex].projectIds = [];
-      companies[companyIndex].projectHtmlText = "";
-    }
-    for (stintIndex in stints) {
-      stintId = stints[stintIndex].id;
-      stintIndicesById[stintId] = stintIndex;
-      if (!stints[stintIndex].label) {
-        stints[stintIndex].label =
-          companies[companyIndicesById[stints[stintIndex].companyId]].label;
+<html lang="en">
+  <head>
+    <title>Dan Chretien - Technical Designer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+    <style>
+      div {
+        background-color: lightblue;
       }
-      stints[stintIndex].projectIds = [];
-      stints[stintIndex].projectHtmlText = "";
-    }
-    for (projectIndex in projects) {
-      projectId = projects[projectIndex].id;
-      projectIndicesById[projectId] = projectIndex;
-      projects[projectIndex].noteIds = [];
-      projects[projectIndex].noteHtmlText = "";
-    }
-    for (noteIndex in notes) {
-      noteId = notes[noteIndex].id;
-      noteIndicesById[noteId] = noteIndex;
-    }
-    for (noteIndex in notes) {
-      noteText = noteTemplateString;
-      noteText = ReplaceAll(noteText, "%ID%", notes[noteIndex].id);
-      noteText = ReplaceAll(
-        noteText,
-        "%DESC%",
-        document.getElementById(notes[noteIndex].id + "desc").innerHTML
-      );
-      notes[noteIndex].htmlText = noteText;
+      div.collapsed {
+        display: none;
+      }
+      div.note {
+        background-color: red;
+        border-color: black;
+        margin: 10;
+      }
+      div.project {
+        background-color: green;
+        margin: 10;
+      }
+      div.stint {
+        background-color: blue;
+      }
+    </style>
+    
+    <div>
+      <div><h1>Dan Chretien</h1></div>
+      <div><h2>Technical Designer</h2></div>
+      <div><a href="https://bsky.app/profile/dandanboban.bsky.social">Bluesky</a></div>
+      <div><a href="https://www.linkedin.com/in/daniel-chretien-b4162668/">LinkedIn</a></div>
+    </div>
 
-      projects[projectIndicesById[notes[noteIndex].projectId]].noteIds.push(
-        notes[noteIndex].id
-      );
-      projects[projectIndicesById[notes[noteIndex].projectId]].noteHtmlText +=
-        notes[noteIndex].htmlText + "\n";
+    <div><h2>Work History</h2></div>
 
-      console.log(noteText);
-    }
+    <script>
+      companies = [
+        {
+          id: "coDemiurge",
+          objectType: "company",
+          label: "Demiurge Studios",
+          location: "Boston, MA",
+        },
+        {
+          id: "coHarmonix",
+          objectType: "company",
+          label: "Harmonix Music Systems",
+          location: "Boston, MA",
+        },
+        {
+          id: "coInsomniac",
+          objectType: "company",
+          label: "Insomniac Games",
+          location: "Burbank, CA",
+        },
+      ];
 
-    for (projectIndex in projects) {
-      projectText = projectTemplateString;
-      projectText = ReplaceAll(projectText, "%ID%", projects[projectIndex].id);
-      projectText = ReplaceAll(
-        projectText,
-        "%LABEL%",
-        projects[projectIndex].label
-      );
-      projectText = ReplaceAll(
-        projectText,
-        "%NOTES%",
-        projects[projectIndex].noteHtmlText
-      );
-      projects[projectIndex].htmlText = projectText;
+      stints = [
+        {
+          id: "demiurgeStintB",
+          objectType: "stint",
+          companyId: "coDemiurge",
+          label: "Demiurge (Second Stint)",
+          dateBeginMonth: "June",
+          dateBeginYear: 2021,
+          dateEndMonth: "April",
+          dateEndYear: 2024,
+          role: "Game Designer II",
+        },
+        {
+          id: "harmonixStintA",
+          objectType: "stint",
+          companyId: "coHarmonix",
+          dateBeginMonth: "March",
+          dateBeginYear: 2016,
+          dateEndMonth: "May",
+          dateEndYear: 2021,
+          role: "Technical Designer",
+        },
+        {
+          id: "insomniacStintA",
+          objectType: "stint",
+          companyId: "coInsomniac",
+          dateBeginMonth: "November",
+          dateBeginYear: 2013,
+          dateEndMonth: "February",
+          dateEndYear: 2016,
+          role: "User Interface Builder",
+        },
+        {
+          id: "demiurgeStintA",
+          objectType: "stint",
+          companyId: "coDemiurge",
+          label: "Demiurge (First Stint)",
+          dateBeginMonth: "January",
+          dateBeginYear: 2006,
+          dateEndMonth: "March",
+          dateEndYear: 2013,
+          role: "Game Designer",
+        },
+      ];
 
-      stints[stintIndicesById[projects[projectIndex].stintId]].projectIds.push(
-        projects[projectIndex].id
-      );
-      stints[
-        stintIndicesById[projects[projectIndex].stintId]
-      ].projectHtmlText += projectText + "\n";
-    }
+      projects = [
+        {
+          id: "projectOceanStealth",
+          stintId: "demiurgeStintB",
+          label: "MOBA Stealth and Cover",
+          summaryId: "projectOceanStealthSummary",
+        },
+        {
+          id: "projectOceanKits",
+          stintId: "demiurgeStintB",
+          label: "Player Kit Abilities",
+          summaryId: "projectOceanKitsSummary",
+        },
+        {
+          id: "projectCat",
+          stintId: "harmonixStintA",
+          label: "Unreleased Music Game",
+          role: "Input Collation and Data Routing using Unreal Blueprint",
+          summaryId: "projectCatSummary",
+        },
+        {
+          id: "projectFuser",
+          stintId: "harmonixStintA",
+          label: "Fuser",
+          role: "Gameplay Prototyping And UI Scripting",
+          summaryId: "projectFuserSummary",
+        },
+        {
+          id: "projectFeral",
+          stintId: "insomniacStintA",
+          label: "Feral Rites",
+          role: "User Interface Scripting",
+          summaryId: "projectFeralSummary",
+        },
+        {
+          id: "projectRatchet",
+          stintId: "insomniacStintA",
+          label: "Ratchet & Clank",
+          role: "User Interface Scripting",
+          summaryId: "projectRatchetSummary",
+        },
+        {
+          id: "projectSunset",
+          stintId: "insomniacStintA",
+          label: "Sunset Overdrive",
+          role: "User Interface Scripting",
+          summaryId: "projectSunsetSummary",
+        },
+        {
+          id: "projectBugHunt",
+          stintId: "demiurgeStintA",
+          label: "Aliens: Colonial Marines - Bug Hunt DLC",
+          role: "Encounter Scripting",
+          summaryId: "projectBugHuntSummary",
+        },
+        {
+          id: "projectStation",
+          stintId: "demiurgeStintA",
+          label: "Mass Effect: Pinnacle Station",
+          role: "Encounter Scripting",
+          summaryId: "projectStationSummary",
+        },
+        {
+          id: "projectSmr",
+          stintId: "demiurgeStintA",
+          label: "Shoot Many Robots",
+          role: "Encounter Scripting and Level Layout",
+          summaryId: "projectSmr",
+        },
+      ];
+      notes = [
+        {
+          id: "noteSmrA",
+          projectId: "projectSmr",
+          descId: "noteSmrAdesc",
+        },
+        {
+          id: "noteSmrB",
+          projectId: "projectSmr",
+          descId: "noteSmrBdesc",
+        },
+        {
+          id: "noteSmrC",
+          projectId: "projectSmr",
+          descId: "noteSmrCdesc",
+        },
+        {
+          id: "noteSmrD",
+          projectId: "projectSmr",
+          descId: "noteSmrDdesc",
+        },
+        {
+          id: "noteStationA",
+          projectId: "projectStation",
+          descId: "noteStationAdesc",
+        },
+        {
+          id: "noteStationB",
+          projectId: "projectStation",
+          descId: "noteStationBdesc",
+        },
+        {
+          id: "noteBugHuntA",
+          projectId: "projectBugHunt",
+          descId: "noteBugHuntAdesc",
+        },
+        {
+          id: "noteBugHuntB",
+          projectId: "projectBugHunt",
+          descId: "noteBugHuntBdesc",
+        },
+        {
+          id: "noteBugHuntC",
+          projectId: "projectBugHunt",
+          descId: "noteBugHuntCdesc",
+        },
+        { id: "noteSunsetA", projectId: "projectSunset" },
+        { id: "noteSunsetB", projectId: "projectSunset" },
+        { id: "noteSunsetC", projectId: "projectSunset" },
+        { id: "noteSunsetD", projectId: "projectSunset" },
+        { id: "noteSunsetE", projectId: "projectSunset" },
+        { id: "noteRatchetA", projectId: "projectRatchet" },
+        { id: "noteFeralA", projectId: "projectFeral" },
+        { id: "noteFeralB", projectId: "projectFeral" },
+        { id: "noteFuserA", projectId: "projectFuser" },
+        { id: "noteFuserB", projectId: "projectFuser" },
+        { id: "noteFuserC", projectId: "projectFuser" },
+      ];
+    </script>
 
-    for (stintIndex in stints) {
-      stintText = stintTemplateString;
-      //*
-      stintText = ReplaceAll(stintText, "%ID%", stints[stintIndex].id);
-      stintText = ReplaceAll(stintText, "%LABEL%", stints[stintIndex].label);
-      stintText = ReplaceAll(
-        stintText,
-        "%PROJECTS%",
-        stints[stintIndex].projectHtmlText
-      );
-      //*/
+    <div id="content" class="collapsed">
+      <div id="projectOceanStealthSummary">
+        <p>
+          Using Unreal Blueprint, we explored how we might encourage players to
+          leverage different aspects of the environment in order to gain an
+          advantage over their enemies.
+        </p>
+        <p>
+          Our first pass involved tall-grass volumes that players could hide in
+          in order to toggle their visibility to the enemy. This was fine, but
+          made for very obvious jack-in-the-box locations.
+        </p>
+        <p>
+          The stealth element really began to shine when we gave players players
+          an opportunity to be more expressive with their sneaking. We allowed
+          them to hide themselves against low-cover and behind corners in order
+          to toggle their visibility from opponents on the opposite side of
+          their cover. This allowed them to stay hidden as they moved and pick
+          the angles that would protect them from damage.
+        </p>
+      </div>
+      <div id="projectOceanKitsSummary">
+        I was able to quickly whip up a bunch of new characters for the
+        aforementioned MOBA by quickly scripting new abilities for them using
+        Unreal Blueprint. The modular, component-based nature of their
+        construction made it easy to try out new kits that recombined features
+        from other characters. For example, we were quickly able to throw
+        together a burst-fire cone-damage sword attack by using components from
+        our brawler and SMG characters.
+      </div>
+      <div id="projectCatSummary">
+        <p>
+          This was mostly focused on ushering properties from data objects into
+          the correct widgets in the menus using the Unreal Motion Graphics
+          tools.
+        </p>
+        <p>
+          I was particularly proud of the work I did to work I did to
+          consolidate input functionality into data assets in order to make
+          input scripting more consistent.
+        </p>
+      </div>
+      <div id="projectFuserSummary">
+        <p>
+          There was a really complex stretch at the beginning of Fuser where we
+          were trying develop a prototype that had the potential to be released
+          on a variety of platforms. We wanted to take the amazing music-mashing
+          technology that Harmonix’s engineers had developed for DropMix and
+          demonstrate it’s potential on Consoles and PC. We had to take the act
+          of grabbing a disc and smacking it onto a turntable feel satisfying in
+          VR, on a gamepad, and when using a keyboard/mouse. We ended up using a
+          virtual ‘hand’ that could be driven by whatever input device the
+          player was using.
+        </p>
+        <p>
+          Once the contract had been signed and the project entered production,
+          I helped with UI scripting - mostly surrounding populating text fields
+          and images with the appropriate data.
+        </p>
+      </div>
+      <div id="projectFeralSummary">
+        This was a fun exercise in figuring out how to place information panels
+        in a way that the player could explore them and find the information
+        they were looking for.
+      </div>
+      <div id="projectRatchetSummary">
+        I worked on the card collection screen. It was a fun opportunity to work
+        with Flash’s 3D functionality.
+      </div>
+      <div id="projectSunsetSummary">
+        Most of the work I did on Sunset Overdrive involved data plumbing and
+        input routing. Our engineer would pass data into the screens and I used
+        it to populate the correct fields. A significant chunk of time went into
+        ensuring that the leaderboards worked.
+      </div>
+      <div id="projectBugHuntSummary">
+        Bug Hunt is a wave-based, co-op PvE mode released for Aliens: Colonial
+        Marines. By the time I was brought onto the project, most of the level
+        layout was nearing completion. Most of the work I did involved scripting
+        enemy wave composition in the map “Tribute”. When the engineers were
+        swamped, I used Excel to smooth out some of the edges in the scripting
+        process to improve the workflow for the design team.
+      </div>
+      <div id="projectStationSummary">
+        I worked as a designer on the team that put together Mass Effect:
+        Pinnacle Station. The project provided a bunch of awesome opportunities
+        to wrap my head around the Unreal's Kismet scripting system. Whipping up
+        prototypes for each game mode ended up being a total blast. I also
+        managed to rig up much of the scoreboard system using kismet. It was
+        cool getting to kick around in BioWare's conversation tools, which I
+        used to set up the mission selection conversation.
+      </div>
+      <div id="projectSmr">
+        The level design work that I did on Shoot Many Robots was primarily
+        focused on the survival missions. These missions were wave-based, PvE
+        arena battles for a side-scrolling shoot-em-up. I started each level
+        with a graybox level. On each level I focused on the expected theme for
+        the paths that players would be taking throughout the space. For
+        example, in some levels they would be following a shallow up-and-down
+        pattern. In others, they would be diving into deep trenches and then
+        battling their way back up.
+      </div>
+      <div id="noteFuserAdesc">
+        The Crate Creation Screen is where the player would build a loadout of
+        the music-creation content that they would be bringing into the game.
+        This screen features a good example of a tab list. I did a bunch of work
+        to make it easier for artists and scripters to change those on the fly
+        in a consistent and human-error-resistant way. I did most of the
+        scripting on the song-selection tab. Blueprint Scripting: Me and the
+        programmers at Harmonix / Code Hooks: Harmonix Engineers / Art and UX:
+        Harmonix UI Art Team
+      </div>
+      <div id="noteFuserBdesc">
+        The main menu for fuser. It features a skeleton footprint for each
+        element that requires data to be fetched dynamically from the server. I
+        coordinated with the artists in the efforts to systemize the behavior of
+        panels that needed a skeleton to ensure consistent styling and
+        functionality. Blueprint Scripting: Me and the programmers at Harmonix /
+        Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
+      </div>
+      <div id="noteFuserCdesc">
+        Fuser's settings screen. For some reason, finding good ways to organize
+        settings data and widgets is super satisfying for me. Blueprint
+        Scripting: Me and the programmers at Harmonix / Code Hooks: Harmonix
+        Engineers / Art and UX: Harmonix UI Art Team
+      </div>
+      <div id="noteFeralAdesc">
+        The Shop Screen that I helped build on Feral Rites. The panels are all
+        angled toward the player, similar to the way one might rotate their
+        screens in a multi-monitor setup. I did the majority of the scripting on
+        this screen. I also built the 3D model that the menu was projected on. I
+        laid out the panels in Flash to work as a UV map for the menu mesh.
+        ActionScript: Me, until I left Insomniac. Wrapped up by Insomniac East,
+        I believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac
+        UI Art Team
+      </div>
+      <div id="noteFeralBdesc">
+        An additional confirmation panel that pops up when you want to buy
+        something at The Shop Screen. ActionScript: Me, until I left Insomniac.
+        Wrapped up by Insomniac East, I believe. / Code Hooks: Insomniac UI
+        Engineers / Art and UX: Insomniac UI Art Team
+      </div>
+      <div id="noteRatchetAdesc">
+        The Card Collection screen from Ratchet & Clank (2016). Players were
+        able to a collection of holocards they had collected. Each completed set
+        of cards provided the player with a gameplay bonus. ActionScript: Me,
+        and also some UI Engineers at Insomniac East / Code Hooks: Insomniac UI
+        Engineers / Art and UX: Insomniac UI Art Team
+      </div>
+      <div id="noteSunsetAdesc">
+        The Challenge Browser Screen combined some of the most complicated
+        screen elements I worked on. The map needed to pan to the correct
+        location, and the leaderboards needed to talk to the code to coordinate
+        retrieval of the correct leaderboard data. ActionScript (Navigation,
+        calling hooks): Me. / Code Hooks: Insomniac UI Engineers / Art and UX:
+        Insomniac UI Art Team.
+      </div>
+      <div id="noteSunsetBdesc">
+        The Mission Results Screen. Mostly a matter of routing data passed in
+        from code into the appropriate UI elements. ActionScript: Me. / Code
+        Hooks: Insomniac UI Engineers / Art, UX: Insomniac UI Art Team
+      </div>
+      <div id="noteSunsetCdesc">
+        Two-Hat Jack is a shop where the player can purchase ammo and new
+        weapons. ActionScript: Me. / Code Hooks: Insomniac UI Engineers / Art
+        and UX: Insomniac UI Art Team
+      </div>
+      <div id="noteSunsetDdesc">
+        I ended up implementing a bunch of the tutorials for the menu screens.
+        The amps tutorial was particularly gnarly because it forced us to fix a
+        bunch of corner cases that would soft-lock the player's save if they
+        managed to mash the controls at the precisely wrong moment. Amps
+        Tutorial Flow ActionScript: Me. / Code Hooks: Insomniac UI Engineers /
+        Art and UX: Insomniac UI Art Team
+      </div>
+      <div id="noteSunsetEdesc">
+        Once the HUD messages were gray-boxed, I helped to migrate in the art
+        from the concepts that our Artists had created. ActionScript: Me. / Code
+        Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI Art Team
+      </div>
+      <div id="noteBugHuntAdesc">
+        A hallway on the lower level of the "Tribute" map. A bunch of effort
+        went into making sure the spawn points in the vents were positioned just
+        right so that players couldn't fall into the vents, but the aliens could
+        still climb out. Level Geo: Demiurge Art and Design team / Level Markup:
+        Me / Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI
+        Art Team
+      </div>
+      <div id="noteBugHuntBdesc">
+        A scene from later in the "Tribute" map. As players progress through the
+        various waves, we started introducing stronger variants of each
+        xenomorph class. These stronger variants were distinguishable by meshes
+        attached to their base meshes. Level Geo: Demiurge Art and Design team /
+        Level Markup: Me / Code: Demiurge and Gearbox Engineers / UI Art and UX:
+        Gearbox UI Art Team
+      </div>
+      <div id="noteBugHuntCdesc">
+        An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
+        around the levels, the xenomorphs used hand-authored grip points. The
+        grip points served as a great way to prevent the player from just
+        turtling up in a corner, as an alien could come bounding over a stack of
+        boxes at any moment. Level Geo: Demiurge Art and Design team / Level
+        Markup: Me / Code: Demiurge and Gearbox Engineers / UI Art and UX:
+        Gearbox UI Art Team
+      </div>
+      <div id="noteStationAdesc">
+        A screenshot of the capture-and-hold game mode built for Pinnacle
+        Station. I built the game mode logic graphs in Kismet 3, and we just had
+        to copy-paste them for each instance of the game mode that we used.
+        Level Geo: Demiurge Art and Design team / Game Mode Scripting: Me /
+        Code: Demiurge and BioWare Engineers / Game Art: BioWare Art Team and
+        Demiurge Art Team
+      </div>
+      <div id="noteStationBdesc">
+        Building the results screen was super tricky! We didn't have access to
+        any of the usual UI construction tools, so we had to basically just bake
+        our text into textures, and then swap out the textures used in the
+        materials on a series of planes attached to the camera. Level Geo:
+        Demiurge Art and Design team / UI Construction: Me / Code: Demiurge and
+        BioWare Engineers / UI Art and UX: Demiurge and BioWare UI Art Teams
+      </div>
+      <div id="noteSmrAdesc">
+        The first survival mission that I worked on, 'Farmland Siege' also ended
+        up being my favorite. It has two nice bowl-shaped arenas on either side
+        of the map divided by a hill in the center. The platforms are positioned
+        in a way that not only allows enemies to fire from an elevated position,
+        but also gives the map a nice figure-eight path. Once the first blockout
+        was completed, one of our artists jazzed up the surrounding environment
+        with additional props and lighting.
+      </div>
+      <div id="noteSmrBdesc">
+        'Outskirts Ambush' flanks the player with enemies and drives them to the
+        center hill. The center hill provides two major combat moments: battling
+        one's way up the hill to attack enemies on the left, and leaping across
+        the hill into the fray on the right. After the initial geo pass, art
+        added some awesome props, lighting and animated life to the background.
+      </div>
+      <div id="noteSmrCdesc">
+        'Cliffs Survival' makes a little more use of vertical space. Stationary
+        ranged enemies and fliers fire down at the player, luring the player up
+        across the platforms to engage them. Once the initial geo blockout was
+        done, an artist raised the snazz level with additional props and
+        lighting. Our lead designer also took a pass, adding in the interactive
+        objects that can be detonated to damage the robots.
+      </div>
+      <div id="noteSmrDdesc">
+        My goal in 'Downtown Roadblock' was to cycle players toward the edges of
+        the map, up onto the platforms and then back into the center. Ranged
+        enemies drive the player under the ledges the edges of the map, and then
+        surges of melee enemies from below chase the players up and out. After
+        an initial graybox and rough prop placement, one of our artists did an
+        awesome art pass on the props and lighting.
+      </div>
+    </div>
 
-      demoDivElement.innerHTML += stintText + "\n";
-    }
+    <div id="templates" class="collapsed">
+      <div id="templateNote">
+        <div id="%ID%" class="note">%DESC%</div>
+      </div>
+      <div id="templateProject">
+        <div id="%ID%" class="project">
+          <div class="project">%LABEL%</div>
+          <div class="project">%NOTES%</div>
+        </div>
+      </div>
+      <div id="templateStint">
+        <div id="%ID%" class="stint">
+          <div class="stint">%LABEL%</div>
+          <div class="stint">%MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%</div>
+          <div class="stint">%ROLE%</div>
+          <div class="stint">%PROJECTS%</div>
+        </div>
+      </div>
+    </div>
 
-    console.log(companies);
-    console.log(stintIndicesById);
-    console.log(stints);
-    console.log(projects);
-    console.log(notes);
-  </script>
+    <div id="demo"></div>
+    <script>
+      function ReplaceAll(wholeString, key, replacement) {
+        //https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
+        return wholeString.split(key).join(replacement);
+      }
+      demoDivElement = document.getElementById("demo");
+
+      noteTemplateString = document.getElementById("templateNote").innerHTML;
+      console.log(noteTemplateString);
+      projectTemplateString =
+        document.getElementById("templateProject").innerHTML;
+      stintTemplateString = document.getElementById("templateStint").innerHTML;
+      companyIndicesById = [];
+      stintIndicesById = [];
+      projectIndicesById = [];
+      noteIndicesById = [];
+
+      for (companyIndex in companies) {
+        companyId = companies[companyIndex].id;
+        companyIndicesById[companyId] = companyIndex;
+        companies[companyIndex].stintIds = [];
+        companies[companyIndex].projectIds = [];
+        companies[companyIndex].projectHtmlText = "";
+      }
+      for (stintIndex in stints) {
+        stintId = stints[stintIndex].id;
+        stintIndicesById[stintId] = stintIndex;
+        if (!stints[stintIndex].label) {
+          stints[stintIndex].label =
+            companies[companyIndicesById[stints[stintIndex].companyId]].label;
+        }
+        stints[stintIndex].projectIds = [];
+        stints[stintIndex].projectHtmlText = "";
+      }
+      for (projectIndex in projects) {
+        projectId = projects[projectIndex].id;
+        projectIndicesById[projectId] = projectIndex;
+        projects[projectIndex].noteIds = [];
+        projects[projectIndex].noteHtmlText = "";
+      }
+      for (noteIndex in notes) {
+        noteId = notes[noteIndex].id;
+        noteIndicesById[noteId] = noteIndex;
+      }
+      for (noteIndex in notes) {
+        noteText = noteTemplateString;
+        noteText = ReplaceAll(noteText, "%ID%", notes[noteIndex].id);
+        noteText = ReplaceAll(
+          noteText,
+          "%DESC%",
+          document.getElementById(notes[noteIndex].id + "desc").innerHTML
+        );
+        notes[noteIndex].htmlText = noteText;
+
+        projects[projectIndicesById[notes[noteIndex].projectId]].noteIds.push(
+          notes[noteIndex].id
+        );
+        projects[projectIndicesById[notes[noteIndex].projectId]].noteHtmlText +=
+          notes[noteIndex].htmlText + "\n";
+
+        console.log(noteText);
+      }
+
+      for (projectIndex in projects) {
+        projectText = projectTemplateString;
+        projectText = ReplaceAll(
+          projectText,
+          "%ID%",
+          projects[projectIndex].id
+        );
+        projectText = ReplaceAll(
+          projectText,
+          "%LABEL%",
+          projects[projectIndex].label
+        );
+        projectText = ReplaceAll(
+          projectText,
+          "%NOTES%",
+          projects[projectIndex].noteHtmlText
+        );
+        projects[projectIndex].htmlText = projectText;
+
+        stints[
+          stintIndicesById[projects[projectIndex].stintId]
+        ].projectIds.push(projects[projectIndex].id);
+        stints[
+          stintIndicesById[projects[projectIndex].stintId]
+        ].projectHtmlText += projectText + "\n";
+      }
+
+      for (stintIndex in stints) {
+        stintText = stintTemplateString;
+        //*
+        stintText = ReplaceAll(stintText, "%ID%", stints[stintIndex].id);
+        stintText = ReplaceAll(stintText, "%LABEL%", stints[stintIndex].label);
+        stintText = ReplaceAll(stintText, "%MONTHBEGIN%", stints[stintIndex].dateBeginMonth);
+        stintText = ReplaceAll(stintText, "%YEARBEGIN%", stints[stintIndex].dateBeginYear);
+        stintText = ReplaceAll(stintText, "%MONTHEND%", stints[stintIndex].dateEndMonth);
+        stintText = ReplaceAll(stintText, "%YEAREND%", stints[stintIndex].dateEndYear);
+        stintText = ReplaceAll(stintText, "%ROLE%", stints[stintIndex].role);
+
+        stintText = ReplaceAll(
+          stintText,
+          "%PROJECTS%",
+          stints[stintIndex].projectHtmlText
+        );
+        //*/
+
+        demoDivElement.innerHTML += stintText + "\n";
+      }
+
+      console.log(companies);
+      console.log(stintIndicesById);
+      console.log(stints);
+      console.log(projects);
+      console.log(notes);
+    </script>
+  </html>
 </html>
