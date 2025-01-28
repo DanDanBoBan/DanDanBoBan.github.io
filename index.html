@@ -13,6 +13,7 @@
     }
     div.project {
       background-color: green;
+      margin: 10;
     }
     div.stint {
       background-color: blue;
@@ -25,19 +26,19 @@
       {
         id: "coDemiurge",
         objectType: "company",
-        friendlyName: "Demiurge Studios",
+        label: "Demiurge Studios",
         location: "Boston, MA",
       },
       {
         id: "coHarmonix",
         objectType: "company",
-        friendlyName: "Harmonix Music Systems",
+        label: "Harmonix Music Systems",
         location: "Boston, MA",
       },
       {
         id: "coInsomniac",
         objectType: "company",
-        friendlyName: "Insomniac Games",
+        label: "Insomniac Games",
         location: "Burbank, CA",
       },
     ];
@@ -47,7 +48,7 @@
         id: "demiurgeStintB",
         objectType: "stint",
         companyId: "coDemiurge",
-        friendlyName: "Demiurge (Second Stint)",
+        label: "Demiurge (Second Stint)",
         dateBeginMonth: "June",
         dateBeginYear: 2021,
         dateEndMonth: "April",
@@ -78,7 +79,7 @@
         id: "demiurgeStintA",
         objectType: "stint",
         companyId: "coDemiurge",
-        friendlyName: "Demiurge (First Stint)",
+        label: "Demiurge (First Stint)",
         dateBeginMonth: "January",
         dateBeginYear: 2006,
         dateEndMonth: "March",
@@ -160,60 +161,60 @@
     notes = [
       {
         id: "noteSmrA",
-        project: "projectSmr",
+        projectId: "projectSmr",
         descId: "noteSmrAdesc",
       },
       {
         id: "noteSmrB",
-        project: "projectSmr",
+        projectId: "projectSmr",
         descId: "noteSmrBdesc",
       },
       {
         id: "noteSmrC",
-        project: "projectSmr",
+        projectId: "projectSmr",
         descId: "noteSmrCdesc",
       },
       {
         id: "noteSmrD",
-        project: "projectSmr",
+        projectId: "projectSmr",
         descId: "noteSmrDdesc",
       },
       {
         id: "noteStationA",
-        project: "projectStation",
+        projectId: "projectStation",
         descId: "noteStationAdesc",
       },
       {
         id: "noteStationB",
-        project: "projectStation",
+        projectId: "projectStation",
         descId: "noteStationBdesc",
       },
       {
         id: "noteBugHuntA",
-        project: "projectBugHunt",
+        projectId: "projectBugHunt",
         descId: "noteBugHuntAdesc",
       },
       {
         id: "noteBugHuntB",
-        project: "projectBugHunt",
+        projectId: "projectBugHunt",
         descId: "noteBugHuntBdesc",
       },
       {
         id: "noteBugHuntC",
-        project: "projectBugHunt",
+        projectId: "projectBugHunt",
         descId: "noteBugHuntCdesc",
       },
-      { id: "noteSunsetA", project: "projectSunset" },
-      { id: "noteSunsetB", project: "projectSunset" },
-      { id: "noteSunsetC", project: "projectSunset" },
-      { id: "noteSunsetD", project: "projectSunset" },
-      { id: "noteSunsetE", project: "projectSunset" },
-      { id: "noteRatchetA", project: "projectRatchet" },
-      { id: "noteFeralA", project: "projectFeral" },
-      { id: "noteFeralB", project: "projectFeral" },
-      { id: "noteFuserA", project: "projectFuser" },
-      { id: "noteFuserB", project: "projectFuser" },
-      { id: "noteFuserC", project: "projectFuser" },
+      { id: "noteSunsetA", projectId: "projectSunset" },
+      { id: "noteSunsetB", projectId: "projectSunset" },
+      { id: "noteSunsetC", projectId: "projectSunset" },
+      { id: "noteSunsetD", projectId: "projectSunset" },
+      { id: "noteSunsetE", projectId: "projectSunset" },
+      { id: "noteRatchetA", projectId: "projectRatchet" },
+      { id: "noteFeralA", projectId: "projectFeral" },
+      { id: "noteFeralB", projectId: "projectFeral" },
+      { id: "noteFuserA", projectId: "projectFuser" },
+      { id: "noteFuserB", projectId: "projectFuser" },
+      { id: "noteFuserC", projectId: "projectFuser" },
     ];
   </script>
 
@@ -473,10 +474,16 @@
       <div id="%ID%" class="note">%DESC%</div>
     </div>
     <div id="templateProject">
-      <div class="project">%NOTES%</div>
+      <div id="%ID%" class="project">
+        <div class="project">%LABEL%</div>
+        <div class="project">%NOTES%</div>
+      </div>
     </div>
     <div id="templateStint">
-      <div class="stint">%PROJECTS%</div>
+      <div id="%ID%" class="stint">
+        <div class="stint">%LABEL%</div>
+        <div class="stint">%PROJECTS%</div>
+      </div>
     </div>
   </div>
 
@@ -492,29 +499,98 @@
     console.log(noteTemplateString);
     projectTemplateString =
       document.getElementById("templateProject").innerHTML;
-    stintTemplateStriing = document.getElementById("templateStint").innerHTML;
-    stintsById = [];
-    notesById = [];
+    stintTemplateString = document.getElementById("templateStint").innerHTML;
+    companyIndicesById = [];
+    stintIndicesById = [];
+    projectIndicesById = [];
+    noteIndicesById = [];
 
+    for (companyIndex in companies) {
+      companyId = companies[companyIndex].id;
+      companyIndicesById[companyId] = companyIndex;
+      companies[companyIndex].stintIds = [];
+      companies[companyIndex].projectIds = [];
+      companies[companyIndex].projectHtmlText = "";
+    }
+    for (stintIndex in stints) {
+      stintId = stints[stintIndex].id;
+      stintIndicesById[stintId] = stintIndex;
+      if (!stints[stintIndex].label) {
+        stints[stintIndex].label =
+          companies[companyIndicesById[stints[stintIndex].companyId]].label;
+      }
+      stints[stintIndex].projectIds = [];
+      stints[stintIndex].projectHtmlText = "";
+    }
+    for (projectIndex in projects) {
+      projectId = projects[projectIndex].id;
+      projectIndicesById[projectId] = projectIndex;
+      projects[projectIndex].noteIds = [];
+      projects[projectIndex].noteHtmlText = "";
+    }
     for (noteIndex in notes) {
-      idString = notes[noteIndex].id;
+      noteId = notes[noteIndex].id;
+      noteIndicesById[noteId] = noteIndex;
+    }
+    for (noteIndex in notes) {
       noteText = noteTemplateString;
-      noteText = ReplaceAll(noteText, "%ID%", idString);
+      noteText = ReplaceAll(noteText, "%ID%", notes[noteIndex].id);
       noteText = ReplaceAll(
         noteText,
         "%DESC%",
-        document.getElementById(idString + "desc").innerHTML
+        document.getElementById(notes[noteIndex].id + "desc").innerHTML
       );
       notes[noteIndex].htmlText = noteText;
-      notesById[idString] = notes[noteIndex];
 
-      demoDivElement.innerHTML += noteText;
+      projects[projectIndicesById[notes[noteIndex].projectId]].noteIds.push(
+        notes[noteIndex].id
+      );
+      projects[projectIndicesById[notes[noteIndex].projectId]].noteHtmlText +=
+        notes[noteIndex].htmlText + "\n";
 
       console.log(noteText);
     }
 
+    for (projectIndex in projects) {
+      projectText = projectTemplateString;
+      projectText = ReplaceAll(projectText, "%ID%", projects[projectIndex].id);
+      projectText = ReplaceAll(
+        projectText,
+        "%LABEL%",
+        projects[projectIndex].label
+      );
+      projectText = ReplaceAll(
+        projectText,
+        "%NOTES%",
+        projects[projectIndex].noteHtmlText
+      );
+      projects[projectIndex].htmlText = projectText;
+
+      stints[stintIndicesById[projects[projectIndex].stintId]].projectIds.push(
+        projects[projectIndex].id
+      );
+      stints[
+        stintIndicesById[projects[projectIndex].stintId]
+      ].projectHtmlText += projectText + "\n";
+    }
+
+    for (stintIndex in stints) {
+      stintText = stintTemplateString;
+      //*
+      stintText = ReplaceAll(stintText, "%ID%", stints[stintIndex].id);
+      stintText = ReplaceAll(stintText, "%LABEL%", stints[stintIndex].label);
+      stintText = ReplaceAll(
+        stintText,
+        "%PROJECTS%",
+        stints[stintIndex].projectHtmlText
+      );
+      //*/
+
+      demoDivElement.innerHTML += stintText + "\n";
+    }
+
     console.log(companies);
-    console.log(stintsById);
+    console.log(stintIndicesById);
     console.log(stints);
     console.log(projects);
     console.log(notes);
