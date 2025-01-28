@@ -10,24 +10,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
     <style>
-      div {
+      /*div {
         background-color: lightblue;
-      }
+      }*/
       div.collapsed {
         display: none;
       }
       div.note {
-        background-color: red;
-        border-color: black;
+        /*background-color: red;
+        border-color: black;*/
         margin: 10;
       }
       div.project {
-        background-color: green;
+        /*background-color: green;*/
         margin: 10;
       }
-      div.stint {
-        background-color: blue;
+      div.projectDate{
+        font-style: italic;
       }
+      div.projectRole{
+        font-weight: bold;
+      }
+      div.stintDate{
+        font-style: italic;
+      }
+      div.stintRole{
+        font-weight: bold;
+      }
+      /*div.stint {
+        background-color: blue;
+      }*/
     </style>
     
     <div>
@@ -497,15 +509,15 @@
       </div>
       <div id="templateProject">
         <div id="%ID%" class="project">
-          <div class="project">%LABEL%</div>
+          <div class="project"><h4>%LABEL%</h4></div>
           <div class="project">%NOTES%</div>
         </div>
       </div>
       <div id="templateStint">
         <div id="%ID%" class="stint">
-          <div class="stint">%LABEL%</div>
-          <div class="stint">%MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%</div>
-          <div class="stint">%ROLE%</div>
+          <div class="stint"><h3>%LABEL%</h3></div>
+          <div class="stint stintDate">%MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%</div>
+          <div class="stint stintRole">%ROLE%</div>
           <div class="stint">%PROJECTS%</div>
         </div>
       </div>
