@@ -54,22 +54,18 @@
       }*/
   </style>
 
-  <div>
-    <div><h1>Dan Chretien</h1></div>
-    <div><h2>Technical Designer</h2></div>
-    <div>
-      <a href="https://bsky.app/profile/dandanboban.bsky.social">Bluesky</a>
-    </div>
-    <div>
-      <a href="https://www.linkedin.com/in/daniel-chretien-b4162668/"
-        >LinkedIn</a
-      >
-    </div>
-  </div>
-
-  <div><h2>Work History</h2></div>
-
+  <!--Data assembly-->
   <script>
+    socialLinks = [
+      {
+        label: "Bluesky",
+        destUrl: "https://bsky.app/profile/dandanboban.bsky.social",
+      },
+      {
+        label: "LinkedIn",
+        destUrl: "https://www.linkedin.com/in/daniel-chretien-b4162668/",
+      },
+    ];
     companies = [
       {
         id: "coDemiurge",
@@ -222,48 +218,60 @@
         imgSrc: "screen-smr-outskirts.jpg",
       },
       {
-        id: "noteSmrC",
+        id: "noteSmrCliffs",
         projectId: "projectSmr",
-        descId: "noteSmrCdesc",
+        imgSrc: "screen-smr-cliffs.jpg",
       },
       {
-        id: "noteSmrD",
+        id: "noteSmrCity",
         projectId: "projectSmr",
-        descId: "noteSmrDdesc",
+        imgSrc: "screen-smr-city.jpg",
       },
       {
-        id: "noteStationA",
+        id: "noteStationGame",
         projectId: "projectStation",
-        descId: "noteStationAdesc",
+        imgSrc: "screen-station-game.jpg",
       },
       {
-        id: "noteStationB",
+        id: "noteStationBoard",
         projectId: "projectStation",
-        descId: "noteStationBdesc",
+        imgSrc: "screen-station-board.jpg",
       },
       {
-        id: "noteBugHuntA",
+        id: "noteBugHuntHall",
         projectId: "projectBugHunt",
-        descId: "noteBugHuntAdesc",
+        imgSrc: "screen-aliens-hall.jpg",
       },
       {
-        id: "noteBugHuntB",
+        id: "noteBugHuntLate",
         projectId: "projectBugHunt",
-        descId: "noteBugHuntBdesc",
+        imgSrc: "screen-aliens-late.jpg",
       },
       {
-        id: "noteBugHuntC",
+        id: "noteBugHuntCorner",
         projectId: "projectBugHunt",
-        descId: "noteBugHuntCdesc",
+        imgSrc: "screen-aliens-corner.jpg",
       },
       { id: "noteSunsetA", projectId: "projectSunset" },
       { id: "noteSunsetB", projectId: "projectSunset" },
       { id: "noteSunsetC", projectId: "projectSunset" },
       { id: "noteSunsetD", projectId: "projectSunset" },
       { id: "noteSunsetE", projectId: "projectSunset" },
-      { id: "noteRatchetA", projectId: "projectRatchet" },
-      { id: "noteFeralA", projectId: "projectFeral" },
-      { id: "noteFeralB", projectId: "projectFeral" },
+      {
+        id: "noteRatchetCollection",
+        projectId: "projectRatchet",
+        imgSrc: "screen-ratchet-collection.png",
+      },
+      {
+        id: "noteFeralShopA",
+        projectId: "projectFeral",
+        imgSrc: "screen-feral-shop-a.jpg",
+      },
+      {
+        id: "noteFeralShopB",
+        projectId: "projectFeral",
+        imgSrc: "screen-feral-shop-b.jpg",
+      },
       {
         id: "noteFuserCrate",
         projectId: "projectFuser",
@@ -282,6 +290,7 @@
     ];
   </script>
 
+  <!--Entry Content-->
   <div id="content" class="collapsed">
     <div id="projectOceanStealthSummary">
       <p>
@@ -407,7 +416,7 @@
       Me and the programmers at Harmonix / Code Hooks: Harmonix Engineers / Art
       and UX: Harmonix UI Art Team
     </div>
-    <div id="noteFeralAdesc">
+    <div id="noteFeralShopAdesc">
       The Shop Screen that I helped build on Feral Rites. The panels are all
       angled toward the player, similar to the way one might rotate their
       screens in a multi-monitor setup. I did the majority of the scripting on
@@ -417,13 +426,13 @@
       believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI
       Art Team
     </div>
-    <div id="noteFeralBdesc">
+    <div id="noteFeralShopBdesc">
       An additional confirmation panel that pops up when you want to buy
       something at The Shop Screen. ActionScript: Me, until I left Insomniac.
       Wrapped up by Insomniac East, I believe. / Code Hooks: Insomniac UI
       Engineers / Art and UX: Insomniac UI Art Team
     </div>
-    <div id="noteRatchetAdesc">
+    <div id="noteRatchetCollectiondesc">
       The Card Collection screen from Ratchet & Clank (2016). Players were able
       to a collection of holocards they had collected. Each completed set of
       cards provided the player with a gameplay bonus. ActionScript: Me, and
@@ -460,14 +469,14 @@
       the concepts that our Artists had created. ActionScript: Me. / Code Hooks:
       Insomniac UI Engineers / Art and UX: Insomniac UI Art Team
     </div>
-    <div id="noteBugHuntAdesc">
+    <div id="noteBugHuntHalldesc">
       A hallway on the lower level of the "Tribute" map. A bunch of effort went
       into making sure the spawn points in the vents were positioned just right
       so that players couldn't fall into the vents, but the aliens could still
       climb out. Level Geo: Demiurge Art and Design team / Level Markup: Me /
       Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
     </div>
-    <div id="noteBugHuntBdesc">
+    <div id="noteBugHuntLatedesc">
       A scene from later in the "Tribute" map. As players progress through the
       various waves, we started introducing stronger variants of each xenomorph
       class. These stronger variants were distinguishable by meshes attached to
@@ -475,7 +484,7 @@
       Me / Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art
       Team
     </div>
-    <div id="noteBugHuntCdesc">
+    <div id="noteBugHuntCornerdesc">
       An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
       around the levels, the xenomorphs used hand-authored grip points. The grip
       points served as a great way to prevent the player from just turtling up
@@ -483,7 +492,7 @@
       moment. Level Geo: Demiurge Art and Design team / Level Markup: Me / Code:
       Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
     </div>
-    <div id="noteStationAdesc">
+    <div id="noteStationGamedesc">
       A screenshot of the capture-and-hold game mode built for Pinnacle Station.
       I built the game mode logic graphs in Kismet 3, and we just had to
       copy-paste them for each instance of the game mode that we used. Level
@@ -491,7 +500,7 @@
       Demiurge and BioWare Engineers / Game Art: BioWare Art Team and Demiurge
       Art Team
     </div>
-    <div id="noteStationBdesc">
+    <div id="noteStationBoarddesc">
       Building the results screen was super tricky! We didn't have access to any
       of the usual UI construction tools, so we had to basically just bake our
       text into textures, and then swap out the textures used in the materials
@@ -515,7 +524,7 @@
       the hill into the fray on the right. After the initial geo pass, art added
       some awesome props, lighting and animated life to the background.
     </div>
-    <div id="noteSmrCdesc">
+    <div id="noteSmrCliffsdesc">
       'Cliffs Survival' makes a little more use of vertical space. Stationary
       ranged enemies and fliers fire down at the player, luring the player up
       across the platforms to engage them. Once the initial geo blockout was
@@ -523,7 +532,7 @@
       Our lead designer also took a pass, adding in the interactive objects that
       can be detonated to damage the robots.
     </div>
-    <div id="noteSmrDdesc">
+    <div id="noteSmrCitydesc">
       My goal in 'Downtown Roadblock' was to cycle players toward the edges of
       the map, up onto the platforms and then back into the center. Ranged
       enemies drive the player under the ledges the edges of the map, and then
@@ -533,6 +542,7 @@
     </div>
   </div>
 
+  <!--Templates-->
   <div id="templates" class="collapsed">
     <div id="templateNote">
       <div id="%ID%" class="note">
@@ -557,6 +567,19 @@
         <div class="stint">%PROJECTS%</div>
       </div>
     </div>
+    <div id="templateSocialLink">
+      <div>
+        <!--<a href="%URL%"">%LABEL%</a>-->
+      </div>
+    </div>
+  </div>
+
+  <!--Heading-->
+  <div>
+    <div><h1>Dan Chretien</h1></div>
+    <div><h2>Technical Designer</h2></div>
+    <div id="socialLinksDiv"></div>
+    <div><h2>Project History</h2></div>
   </div>
 
   <div id="demo"></div>
@@ -571,11 +594,31 @@
     console.log(noteTemplateString);
     projectTemplateString =
       document.getElementById("templateProject").innerHTML;
+    socialLinkTemplateString =
+      document.getElementById("templateSocialLink").innerHTML;
     stintTemplateString = document.getElementById("templateStint").innerHTML;
     companyIndicesById = [];
     stintIndicesById = [];
     projectIndicesById = [];
     noteIndicesById = [];
+
+    for (socialLinkIndex in socialLinks) {
+      socialLinksDivElement = document.getElementById("socialLinksDiv");
+      socialLinkText = socialLinkTemplateString;
+      socialLinkText = ReplaceAll(socialLinkText, "<!--", "");
+      socialLinkText = ReplaceAll(socialLinkText, "-->", "");
+      socialLinkText = ReplaceAll(
+        socialLinkText,
+        "%URL%",
+        socialLinks[socialLinkIndex].destUrl
+      );
+      socialLinkText = ReplaceAll(
+        socialLinkText,
+        "%LABEL%",
+        socialLinks[socialLinkIndex].label
+      );
+      socialLinksDivElement.innerHTML += socialLinkText;
+    }
 
     for (companyIndex in companies) {
       companyId = companies[companyIndex].id;
