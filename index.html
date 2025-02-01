@@ -16,6 +16,9 @@
     div.collapsed {
       display: none;
     }
+    div.divVisible {
+      display: block;
+    }
     div.imageCollapsed {
       display: none;
     }
@@ -88,6 +91,13 @@
         location: "Burbank, CA",
         logoImg: "logo-co-insomniac.jpg",
       },
+      {
+        id: "coPersonal",
+        objectType: "company",
+        label: "Personal Projects",
+        location: "Greater Boston Area",
+        logoImg: "logo-co-personal.jpg",
+      },
     ];
 
     stints = [
@@ -133,6 +143,12 @@
         dateEndYear: 2013,
         role: "Game Designer",
         logoImg: "logo-co-demiurge-old.png",
+      },
+      {
+        id: "personalStintA",
+        objectType: "stint",
+        companyId: "coPersonal",
+        label: "Personal Projects",
       },
     ];
 
@@ -212,21 +228,49 @@
         id: "noteSmrFarmland",
         projectId: "projectSmr",
         imgSrc: "screen-smr-farm.jpg",
+        credits: [
+          {
+            role: "Level Blockout, Wave Composition",
+            assignee: "Dan Chretien",
+          },
+          { role: "Level Art", assignee: "Demiurge Art Team" },
+        ],
       },
       {
         id: "noteSmrOutskirts",
         projectId: "projectSmr",
         imgSrc: "screen-smr-outskirts.jpg",
+        credits: [
+          {
+            role: "Level Blockout, Wave Composition",
+            assignee: "Dan Chretien",
+          },
+          { role: "Level Art", assignee: "Demiurge Art Team" },
+        ],
       },
       {
         id: "noteSmrCliffs",
         projectId: "projectSmr",
         imgSrc: "screen-smr-cliffs.jpg",
+        credits: [
+          {
+            role: "Level Blockout, Wave Composition",
+            assignee: "Dan Chretien",
+          },
+          { role: "Level Art", assignee: "Demiurge Art Team" },
+        ],
       },
       {
         id: "noteSmrCity",
         projectId: "projectSmr",
         imgSrc: "screen-smr-city.jpg",
+        credits: [
+          {
+            role: "Level Blockout, Wave Composition",
+            assignee: "Dan Chretien",
+          },
+          { role: "Level Art", assignee: "Demiurge Art Team" },
+        ],
       },
       {
         id: "noteStationGame",
@@ -311,7 +355,7 @@
     ];
   </script>
 
-  <!--Entry Content-->
+  <!--Long Entry Content-->
   <div id="content" class="collapsed">
     <div id="projectOceanStealthSummary">
       <p>
@@ -565,10 +609,14 @@
 
   <!--Templates-->
   <div id="templates" class="collapsed">
+    <div id="templateCredit">
+      <div><span>%ROLE%: %ASSIGNEE%</span></div>
+    </div>
     <div id="templateNote">
       <div id="%ID%" class="note">
         <!--<div class="%IMGCLASS%"><img class="noteImg" src="./images/%IMGSRC%"></div>-->
         <div>%DESC%</div>
+        <div class="%CREDITVISIBILITY%">%CREDITS%</div>
       </div>
     </div>
     <div id="templateProject">
@@ -580,10 +628,10 @@
     <div id="templateStint">
       <div id="%ID%" class="stint">
         <div class="stint"><h3>%LABEL%</h3></div>
-        <div class="stint stintDate">
+        <div class="stint stintDate %DATEVISIBLE%">
           %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
         </div>
-        <div class="stint stintRole">%ROLE%</div>
+        <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
         <!--<div><img class="stintImg" src="./images/%IMGSRC%"></div>-->
         <div class="stint">%PROJECTS%</div>
       </div>
@@ -603,7 +651,10 @@
     <div><h2>Project History</h2></div>
   </div>
 
+  <!--DEMO!-->
   <div id="demo"></div>
+
+  <!--populating data-->
   <script>
     function ReplaceAll(wholeString, key, replacement) {
       //https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
@@ -612,7 +663,7 @@
     demoDivElement = document.getElementById("demo");
 
     noteTemplateString = document.getElementById("templateNote").innerHTML;
-    console.log(noteTemplateString);
+    creditTemplateString = document.getElementById("templateCredit").innerHTML;
     projectTemplateString =
       document.getElementById("templateProject").innerHTML;
     socialLinkTemplateString =
@@ -684,6 +735,29 @@
       } else {
         noteText = ReplaceAll(noteText, "%IMGCLASS%", "imageCollapsed");
       }
+
+      //*
+      visibilityText = "collapsed";
+      allCreditsText = "";
+      for (creditIndex in notes[noteIndex].credits) {
+        visibilityText = "divVisible";
+        thisCreditText = creditTemplateString;
+        thisCreditText = ReplaceAll(
+          thisCreditText,
+          "%ROLE%",
+          notes[noteIndex].credits[creditIndex].role
+        );
+        thisCreditText = ReplaceAll(
+          thisCreditText,
+          "%ASSIGNEE%",
+          notes[noteIndex].credits[creditIndex].assignee
+        );
+        allCreditsText += thisCreditText + "\n";
+      }
+      noteText = ReplaceAll(noteText, "%CREDITVISIBILITY%", visibilityText);
+      noteText = ReplaceAll(noteText, "%CREDITS%", allCreditsText);
+      //*/
+
       notes[noteIndex].htmlText = noteText;
 
       projects[projectIndicesById[notes[noteIndex].projectId]].noteIds.push(
@@ -723,27 +797,43 @@
       //*
       stintText = ReplaceAll(stintText, "%ID%", stints[stintIndex].id);
       stintText = ReplaceAll(stintText, "%LABEL%", stints[stintIndex].label);
+      stintHasDate = stints[stintIndex].dateBeginMonth == true;
       stintText = ReplaceAll(
         stintText,
-        "%MONTHBEGIN%",
-        stints[stintIndex].dateBeginMonth
+        "%DATEVISIBLE%",
+        stintHasDate ? "divVisible" : "collapsed"
       );
+      if (stintHasDate) {
+        stintText = ReplaceAll(
+          stintText,
+          "%MONTHBEGIN%",
+          stints[stintIndex].dateBeginMonth
+        );
+        stintText = ReplaceAll(
+          stintText,
+          "%YEARBEGIN%",
+          stints[stintIndex].dateBeginYear
+        );
+        stintText = ReplaceAll(
+          stintText,
+          "%MONTHEND%",
+          stints[stintIndex].dateEndMonth
+        );
+        stintText = ReplaceAll(
+          stintText,
+          "%YEAREND%",
+          stints[stintIndex].dateEndYear
+        );
+      }
+      stintHasRole = stints[stintIndex].role == true;
       stintText = ReplaceAll(
         stintText,
-        "%YEARBEGIN%",
-        stints[stintIndex].dateBeginYear
+        "%ROLEVISIBLE%",
+        stintHasRole ? "divVisible" : "collapsed"
       );
-      stintText = ReplaceAll(
-        stintText,
-        "%MONTHEND%",
-        stints[stintIndex].dateEndMonth
-      );
-      stintText = ReplaceAll(
-        stintText,
-        "%YEAREND%",
-        stints[stintIndex].dateEndYear
-      );
-      stintText = ReplaceAll(stintText, "%ROLE%", stints[stintIndex].role);
+      if (stintHasRole) {
+        stintText = ReplaceAll(stintText, "%ROLE%", stints[stintIndex].role);
+      }
       stintImgText =
         companies[companyIndicesById[stints[stintIndex].companyId]].logoImg;
       if (stints[stintIndex].logoImg) {
@@ -763,10 +853,12 @@
       demoDivElement.innerHTML += stintText + "\n";
     }
 
+    /*
     console.log(companies);
     console.log(stintIndicesById);
     console.log(stints);
     console.log(projects);
     console.log(notes);
+    //*/
   </script>
 </html>
