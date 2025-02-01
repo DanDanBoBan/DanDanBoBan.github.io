@@ -206,6 +206,12 @@
         label: "Aliens: Colonial Marines - Bug Hunt DLC",
         role: "Encounter Scripting",
         summaryId: "projectBugHuntSummary",
+        credits: [
+          { role: "Level Blockout", assignee: "Demiurge Design Team" },
+          { role: "Level Decoration", assignee: "Demiurge Art Team" },
+          { role: "Game Mode Code:", assignee: "Demiurge Engineering Team" },
+          { role: "Base Game Development:", assignee: "Gearbox Software" },
+        ],
       },
       {
         id: "projectStation",
@@ -213,6 +219,15 @@
         label: "Mass Effect: Pinnacle Station",
         role: "Encounter Scripting",
         summaryId: "projectStationSummary",
+        credits: [
+          { role: "Level Design", assignee: "Demiurge Studios Design Team" },
+          { role: "Level Art", assignee: "Demiurge Studios Art Team" },
+          {
+            role: "Code",
+            assignee:
+              "Demiurge Studios Engineering Team, BioWare Engineering Team",
+          },
+        ],
       },
       {
         id: "projectSmr",
@@ -220,6 +235,14 @@
         label: "Shoot Many Robots",
         role: "Encounter Scripting and Level Layout",
         summaryId: "projectSmr",
+        credits: [
+          {
+            role: "Level Blockout, Wave Composition",
+            assignee: "Dan Chretien",
+          },
+          { role: "Level Art", assignee: "Demiurge Studios Art Team" },
+          { role: "Code", assignee: "Demiurge Studios Engineering Team" },
+        ],
       },
     ];
 
@@ -228,74 +251,76 @@
         id: "noteSmrFarmland",
         projectId: "projectSmr",
         imgSrc: "screen-smr-farm.jpg",
-        credits: [
-          {
-            role: "Level Blockout, Wave Composition",
-            assignee: "Dan Chretien",
-          },
-          { role: "Level Art", assignee: "Demiurge Art Team" },
-        ],
+        useProjectCredits: true,
       },
       {
         id: "noteSmrOutskirts",
         projectId: "projectSmr",
         imgSrc: "screen-smr-outskirts.jpg",
-        credits: [
-          {
-            role: "Level Blockout, Wave Composition",
-            assignee: "Dan Chretien",
-          },
-          { role: "Level Art", assignee: "Demiurge Art Team" },
-        ],
+        useProjectCredits: true,
       },
       {
         id: "noteSmrCliffs",
         projectId: "projectSmr",
         imgSrc: "screen-smr-cliffs.jpg",
-        credits: [
-          {
-            role: "Level Blockout, Wave Composition",
-            assignee: "Dan Chretien",
-          },
-          { role: "Level Art", assignee: "Demiurge Art Team" },
-        ],
+        useProjectCredits: true,
       },
       {
         id: "noteSmrCity",
         projectId: "projectSmr",
         imgSrc: "screen-smr-city.jpg",
-        credits: [
-          {
-            role: "Level Blockout, Wave Composition",
-            assignee: "Dan Chretien",
-          },
-          { role: "Level Art", assignee: "Demiurge Art Team" },
-        ],
+        useProjectCredits: true,
       },
       {
         id: "noteStationGame",
         projectId: "projectStation",
         imgSrc: "screen-station-game.jpg",
+        useProjectCredits: true,
+        creditsPrefix: [
+          {
+            role: "Game Mode Kismet Scripting",
+            assignee: "Dan Chretien",
+          },
+        ],
       },
       {
         id: "noteStationBoard",
         projectId: "projectStation",
         imgSrc: "screen-station-board.jpg",
-      },
-      {
-        id: "noteBugHuntHall",
-        projectId: "projectBugHunt",
-        imgSrc: "screen-aliens-hall.jpg",
+        useProjectCredits: true,
+        creditsPrefix: [
+          {
+            role: "Scoreboard Kismet Scripting",
+            assignee: "Dan Chretien",
+          },
+        ],
       },
       {
         id: "noteBugHuntLate",
         projectId: "projectBugHunt",
         imgSrc: "screen-aliens-late.jpg",
+        useProjectCredits: true,
+        creditsPrefix: [
+          { role: '"Tribute" Enemy Wave Authoring', assignee: "Dan Chretien" },
+        ],
+      },
+      {
+        id: "noteBugHuntHall",
+        projectId: "projectBugHunt",
+        imgSrc: "screen-aliens-hall.jpg",
+        useProjectCredits: true,
+        creditsPrefix: [
+          { role: '"Tribute" Level Markup', assignee: "Dan Chretien" },
+        ],
       },
       {
         id: "noteBugHuntCorner",
         projectId: "projectBugHunt",
         imgSrc: "screen-aliens-corner.jpg",
+        useProjectCredits: true,
+        creditsPrefix: [
+          { role: '"Tribute" Level Markup', assignee: "Dan Chretien" },
+        ],
       },
       {
         id: "noteSunsetChallenges",
@@ -538,16 +563,13 @@
       A hallway on the lower level of the "Tribute" map. A bunch of effort went
       into making sure the spawn points in the vents were positioned just right
       so that players couldn't fall into the vents, but the aliens could still
-      climb out. Level Geo: Demiurge Art and Design team / Level Markup: Me /
-      Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
+      climb out.
     </div>
     <div id="noteBugHuntLatedesc">
       A scene from later in the "Tribute" map. As players progress through the
       various waves, we started introducing stronger variants of each xenomorph
       class. These stronger variants were distinguishable by meshes attached to
-      their base meshes. Level Geo: Demiurge Art and Design team / Level Markup:
-      Me / Code: Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art
-      Team
+      their base meshes.
     </div>
     <div id="noteBugHuntCornerdesc">
       An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
@@ -560,18 +582,13 @@
     <div id="noteStationGamedesc">
       A screenshot of the capture-and-hold game mode built for Pinnacle Station.
       I built the game mode logic graphs in Kismet 3, and we just had to
-      copy-paste them for each instance of the game mode that we used. Level
-      Geo: Demiurge Art and Design team / Game Mode Scripting: Me / Code:
-      Demiurge and BioWare Engineers / Game Art: BioWare Art Team and Demiurge
-      Art Team
+      copy-paste them for each instance of the game mode that we used.
     </div>
     <div id="noteStationBoarddesc">
       Building the results screen was super tricky! We didn't have access to any
       of the usual UI construction tools, so we had to basically just bake our
       text into textures, and then swap out the textures used in the materials
-      on a series of planes attached to the camera. Level Geo: Demiurge Art and
-      Design team / UI Construction: Me / Code: Demiurge and BioWare Engineers /
-      UI Art and UX: Demiurge and BioWare UI Art Teams
+      on a series of planes attached to the camera.
     </div>
     <div id="noteSmrFarmlanddesc">
       The first survival mission that I worked on, 'Farmland Siege' also ended
@@ -739,18 +756,26 @@
       //*
       visibilityText = "collapsed";
       allCreditsText = "";
-      for (creditIndex in notes[noteIndex].credits) {
+      creditArray = notes[noteIndex].credits;
+      if (notes[noteIndex].useProjectCredits) {
+        creditArray =
+          projects[projectIndicesById[notes[noteIndex].projectId]].credits;
+      }
+      if (notes[noteIndex].creditsPrefix) {
+        creditArray = notes[noteIndex].creditsPrefix.concat(creditArray);
+      }
+      for (creditIndex in creditArray) {
         visibilityText = "divVisible";
         thisCreditText = creditTemplateString;
         thisCreditText = ReplaceAll(
           thisCreditText,
           "%ROLE%",
-          notes[noteIndex].credits[creditIndex].role
+          creditArray[creditIndex].role
         );
         thisCreditText = ReplaceAll(
           thisCreditText,
           "%ASSIGNEE%",
-          notes[noteIndex].credits[creditIndex].assignee
+          creditArray[creditIndex].assignee
         );
         allCreditsText += thisCreditText + "\n";
       }
