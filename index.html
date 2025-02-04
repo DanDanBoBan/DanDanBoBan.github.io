@@ -68,6 +68,10 @@
         label: "LinkedIn",
         destUrl: "https://www.linkedin.com/in/daniel-chretien-b4162668/",
       },
+      {
+        label: "Resume",
+        destUrl: "./chretien_resume.pdf",
+      },
     ];
     companies = [
       {
@@ -154,16 +158,16 @@
 
     projects = [
       {
-        id: "projectOceanStealth",
+        id: "projectOscarStealth",
         stintId: "demiurgeStintB",
-        label: "MOBA Stealth and Cover",
-        summaryId: "projectOceanStealthSummary",
+        label: "Project Oscar", //"MOBA Stealth and Cover",
+        summaryId: "projectOscarStealthSummary",
       },
       {
-        id: "projectOceanKits",
+        id: "projectOscarKits",
         stintId: "demiurgeStintB",
         label: "Player Kit Abilities",
-        summaryId: "projectOceanKitsSummary",
+        summaryId: "projectOscarKitsSummary",
       },
       {
         id: "projectCat",
@@ -199,6 +203,12 @@
         label: "Sunset Overdrive",
         role: "User Interface Scripting",
         summaryId: "projectSunsetSummary",
+        credits: [
+          { role: "Level Blockout", assignee: "Demiurge Design Team" },
+          { role: "Level Decoration", assignee: "Demiurge Art Team" },
+          { role: "Game Mode Code", assignee: "Demiurge Engineering Team" },
+          { role: "Base Game Development", assignee: "Gearbox Software" },
+        ],
       },
       {
         id: "projectBugHunt",
@@ -209,8 +219,8 @@
         credits: [
           { role: "Level Blockout", assignee: "Demiurge Design Team" },
           { role: "Level Decoration", assignee: "Demiurge Art Team" },
-          { role: "Game Mode Code:", assignee: "Demiurge Engineering Team" },
-          { role: "Base Game Development:", assignee: "Gearbox Software" },
+          { role: "Game Mode Code", assignee: "Demiurge Engineering Team" },
+          { role: "Base Game Development", assignee: "Gearbox Software" },
         ],
       },
       {
@@ -382,7 +392,24 @@
 
   <!--Long Entry Content-->
   <div id="content" class="collapsed">
-    <div id="projectOceanStealthSummary">
+    <div id="projectOscarDesc">
+      Project Oscar was a tactical brawler reminiscent of a MOBA. The client had
+      soft-launched a project but found it was not as financially successful as
+      it had the potential to be. Demiurge was tasked with taking over the
+      project and making it more profitable.
+    </div>
+    <div id="projectOscarChallengeStrikeDesc">
+      <div id="projectOscarChallengeStrikeProblem">
+        The first easy win that we wanted to pursue was playing with map size
+        and layout. Unfortunately, most of the game's systems assumed that
+        levels would be User-Generated, and built within a strict ruleset.
+        Efforts to try new level layouts required saving and retrieving data on
+        some external server. Our rapid prototyping phase was not as rapid as we
+        needed it to be.
+      </div>
+      <div id="projectOscarChallengeStrikeFix">When it became</div>
+    </div>
+    <div id="projectOscarStealthSummary">
       <p>
         Using Unreal Blueprint, we explored how we might encourage players to
         leverage different aspects of the environment in order to gain an
@@ -402,7 +429,7 @@
         angles that would protect them from damage.
       </p>
     </div>
-    <div id="projectOceanKitsSummary">
+    <div id="projectOscarKitsSummary">
       I was able to quickly whip up a bunch of new characters for the
       aforementioned MOBA by quickly scripting new abilities for them using
       Unreal Blueprint. The modular, component-based nature of their
@@ -643,15 +670,24 @@
       </div>
     </div>
     <div id="templateStint">
-      <div id="%ID%" class="stint">
-        <div class="stint"><h3>%LABEL%</h3></div>
-        <div class="stint stintDate %DATEVISIBLE%">
-          %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
+      <div id="%ID%" class="container-fluid p-5 text-left">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="stint"><h3>%LABEL%</h3></div>
+              <div class="stint stintDate %DATEVISIBLE%">
+                %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
+              </div>
+              <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
+              <!--<div><img class="stintImg" src="./images/%IMGSRC%"></div>-->
+            </div>
+            <div class="col-sm-6">
+              <div class="stint">%PROJECTS%</div>
+            </div>
+          </div>
         </div>
-        <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
-        <!--<div><img class="stintImg" src="./images/%IMGSRC%"></div>-->
-        <div class="stint">%PROJECTS%</div>
       </div>
+      <div id="%ID%" class="stint"></div>
     </div>
     <div id="templateSocialLink">
       <div>
@@ -661,12 +697,27 @@
   </div>
 
   <!--Heading-->
-  <div>
-    <div><h1>Dan Chretien</h1></div>
-    <div><h2>Technical Designer</h2></div>
-    <div id="socialLinksDiv"></div>
-    <div><h2>Project History</h2></div>
+  <div class="container-fluid p-5 text-left">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-6">
+          <div><h1>Dan Chretien</h1></div>
+          <div><h2>Technical Designer</h2></div>
+          <div id="socialLinksDiv"></div>
+        </div>
+        <div class="col-sm-6">
+          <!--Summary-->
+          <div>
+            Hi! I'm Dan Chretien. I've been working in the games industry for
+            about 20 years. I love designing co-op multiplayer experiences. I
+            also have a bunch of experience building user interface screens and
+            widgets. Here's a bunch of stuff I've worked on.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <div><h2>Project History</h2></div>
 
   <!--DEMO!-->
   <div id="demo"></div>
