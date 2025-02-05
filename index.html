@@ -46,6 +46,9 @@
     div.stintRole {
       font-weight: bold;
     }
+    div.challengeSectionLabel {
+      font-weight: bold;
+    }
     img.noteImg {
       height: 100px;
     }
@@ -162,6 +165,12 @@
         stintId: "demiurgeStintB",
         label: "Project Oscar", //"MOBA Stealth and Cover",
         summaryId: "projectOscarStealthSummary",
+        challenges: [
+          {
+            label: "Rapid Prototyping",
+            contentBase: "projectOscarChallengeStrike",
+          },
+        ],
       },
       {
         id: "projectOscarKits",
@@ -398,7 +407,7 @@
       it had the potential to be. Demiurge was tasked with taking over the
       project and making it more profitable.
     </div>
-    <div id="projectOscarChallengeStrikeDesc">
+    <div id="projectOscarChallengeStrike">
       <div id="projectOscarChallengeStrikeProblem">
         The first easy win that we wanted to pursue was playing with map size
         and layout. Unfortunately, most of the game's systems assumed that
@@ -407,7 +416,15 @@
         some external server. Our rapid prototyping phase was not as rapid as we
         needed it to be.
       </div>
-      <div id="projectOscarChallengeStrikeFix">When it became</div>
+      <div id="projectOscarChallengeStrikeWork">
+        After a few sprints of slow progress, I pitched the idea of spinning off
+        a small prototyping strike team. This strike team would take some time
+        experimenting with new moment-to-moment gameplay mechanics that might
+        keep players engaged.
+      </div>
+      <div id="projectOscarChallengeStrikeResult">
+        This is the result of that
+      </div>
     </div>
     <div id="projectOscarStealthSummary">
       <p>
@@ -663,10 +680,22 @@
         <div class="%CREDITVISIBILITY%">%CREDITS%</div>
       </div>
     </div>
+    <div id="templateChallenge">
+      <div>
+        <div class="challengeLabel"><h5>%LABEL%</h5></div>
+        <!--<div class="challengeSectionLabel">Challenge</div>-->
+        <div class="challengeProblem collapsed">%Problem%</div>
+        <div class="challengeSectionLabel">Work Done</div>
+        <div class="challengeWork collapsed">%Work%</div>
+        <div class="challengeSectionLabel">Result</div>
+        <div class="challengeResult collapsed">%Result%</div>
+      </div>
+    </div>
     <div id="templateProject">
-      <div id="%ID%" class="project">
-        <div class="project"><h4>%LABEL%</h4></div>
-        <div class="project">%NOTES%</div>
+      <div id="%ID%">
+        <div><h4>%LABEL%</h4></div>
+        <div>%NOTES%</div>
+        <div class="projectChallenges collapsed">%CHALLENGES%</div>
       </div>
     </div>
     <div id="templateStint">
@@ -702,7 +731,7 @@
       <div class="row">
         <div class="col-sm-6">
           <div><h1>Dan Chretien</h1></div>
-          <div><h2>Technical Designer</h2></div>
+          <div><h3>Technical Designer</h3></div>
           <div id="socialLinksDiv"></div>
         </div>
         <div class="col-sm-6">
@@ -717,7 +746,16 @@
       </div>
     </div>
   </div>
-  <div><h2>Project History</h2></div>
+
+  <div class="container-fluid p-5 text-left">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Project History</h2>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--DEMO!-->
   <div id="demo"></div>
@@ -737,6 +775,8 @@
     socialLinkTemplateString =
       document.getElementById("templateSocialLink").innerHTML;
     stintTemplateString = document.getElementById("templateStint").innerHTML;
+    challengeTemplateString =
+      document.getElementById("templateChallenge").innerHTML;
     companyIndicesById = [];
     stintIndicesById = [];
     projectIndicesById = [];
@@ -858,6 +898,53 @@
         "%NOTES%",
         projects[projectIndex].noteHtmlText
       );
+
+      projectHasChallenges = projects[projectIndex].challenges ? true : false;
+      if (projectHasChallenges) {
+        projectText = ReplaceAll(
+          projectText,
+          "projectChallenges collapsed",
+          "projectChallenges divVisible"
+        );
+
+        allChallengesText = "";
+        for (challengeIndex in projects[projectIndex].challenges) {
+          currentChallengeText = challengeTemplateString;
+          currentChallengeText = ReplaceAll(
+            currentChallengeText,
+            "%LABEL%",
+            projects[projectIndex].challenges[challengeIndex].label
+          );
+
+          suffixes = ["Problem", "Work", "Result"];
+
+          for (suffixIndex in suffixes) {
+            challengeElement = document.getElementById(
+              projects[projectIndex].challenges[challengeIndex].contentBase +
+                suffixes[suffixIndex]
+            );
+            if (challengeElement) {
+              currentChallengeText = ReplaceAll(
+                currentChallengeText,
+                "challenge" + suffixes[suffixIndex] + " collapsed",
+                "challenge" + suffixes[suffixIndex] + " divVisible"
+              );
+              currentChallengeText = ReplaceAll(
+                currentChallengeText,
+                "%" + suffixes[suffixIndex] + "%",
+                challengeElement.innerHTML
+              );
+            }
+          }
+          allChallengesText = "\n" + currentChallengeText;
+        }
+        projectText = ReplaceAll(
+          projectText,
+          "%CHALLENGES%",
+          allChallengesText
+        );
+      }
+
       projects[projectIndex].htmlText = projectText;
 
       stints[stintIndicesById[projects[projectIndex].stintId]].projectIds.push(
@@ -873,7 +960,8 @@
       //*
       stintText = ReplaceAll(stintText, "%ID%", stints[stintIndex].id);
       stintText = ReplaceAll(stintText, "%LABEL%", stints[stintIndex].label);
-      stintHasDate = stints[stintIndex].dateBeginMonth == true;
+
+      stintHasDate = stints[stintIndex].dateBeginMonth ? true : false;
       stintText = ReplaceAll(
         stintText,
         "%DATEVISIBLE%",
