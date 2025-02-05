@@ -62,6 +62,11 @@
 
   <!--Data assembly-->
   <script>
+    function ReplaceAll(wholeString, key, replacement) {
+      //https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
+      return wholeString.split(key).join(replacement);
+    }
+
     socialLinks = [
       {
         label: "Bluesky",
@@ -708,7 +713,9 @@
                 %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
               </div>
               <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
-              <!--<div><img class="stintImg" src="./images/%IMGSRC%"></div>-->
+              <div class="ratio ratio-21x9">
+                <img style="object-fit: cover" src="./images/loading.jpg" />
+              </div>
             </div>
             <div class="col-sm-6">
               <div class="stint">%PROJECTS%</div>
@@ -730,13 +737,12 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-sm-6">
-          <div><h1>Dan Chretien</h1></div>
-          <div><h3>Technical Designer</h3></div>
-          <div id="socialLinksDiv"></div>
+          <div><h1 class="display-1">Dan Chretien</h1></div>
+          <div><h3 class="display-3">Technical Designer</h3></div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 d-flex align-items-baseline">
           <!--Summary-->
-          <div>
+          <div style="margin-top: auto; margin-bottom: 12px">
             Hi! I'm Dan Chretien. I've been working in the games industry for
             about 20 years. I love designing co-op multiplayer experiences. I
             also have a bunch of experience building user interface screens and
@@ -744,7 +750,154 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <!--Summary-->
+          <div id="socialLinksDiv"></div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!--Tabs-->
+  <div id="allTabStuff" class="collapsed">
+    <div id="tabsTemplates" class="collapsed">
+      <div id="templateTabButton">
+        <li id="button%tabId%" class="nav-item">
+          <a
+            class="nav-link tabElement active"
+            data-bs-toggle="tab"
+            href="#pane%tabId%"
+            >%tabLabel%</a
+          >
+        </li>
+      </div>
+
+      <div id="templateTabPane">
+        <div id="pane%tabId%" class="container tab-pane tabElement active">
+          <br />
+          <h3>%tabLabel%</h3>
+          %tabPaneContent%
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-3">
+      <!-- Nav tabs -->
+      <ul
+        id="containerTabButtons"
+        class="nav nav-tabs nav-justified"
+        role="tablist"
+      ></ul>
+
+      <!-- Tab panes -->
+      <div id="containerTabPanes" class="tab-content"></div>
+    </div>
+
+    <script>
+      templateTabButtonString =
+        document.getElementById("templateTabButton").innerHTML;
+      templateTabPaneString =
+        document.getElementById("templateTabPane").innerHTML;
+      console.log(templateTabPaneString);
+
+      tabsData = [
+        {
+          label: "Gameplay Design",
+          id: "gameplayDesign",
+          isActive: true,
+          content: "Design content goes here",
+        },
+        {
+          label: "User Interface Scripting",
+          id: "uiScripting",
+          content: "Ui content goes here",
+        },
+      ];
+
+      containerTabButtonsElement = document.getElementById(
+        "containerTabButtons"
+      );
+      containerTabPanesElement = document.getElementById("containerTabPanes");
+      for (tabIndex in tabsData) {
+        instanceTextTabButton = templateTabButtonString;
+        instanceTextTabButton = ReplaceAll(
+          instanceTextTabButton,
+          "%tabLabel%",
+          tabsData[tabIndex].label
+        );
+        instanceTextTabButton = ReplaceAll(
+          instanceTextTabButton,
+          "%tabId%",
+          tabsData[tabIndex].id
+        );
+
+        isActiveTrueString = "tabElement active";
+        isActiveFalseString = "tabElement tabInactive";
+        isActiveNewKey = "%isActiveNewKey%";
+
+        isActiveCurrentString = tabsData[tabIndex].isActive
+          ? isActiveTrueString
+          : isActiveFalseString;
+
+        instanceTextTabButton = ReplaceAll(
+          instanceTextTabButton,
+          isActiveTrueString,
+          isActiveNewKey
+        );
+
+        instanceTextTabButton = ReplaceAll(
+          instanceTextTabButton,
+          isActiveFalseString,
+          isActiveNewKey
+        );
+
+        instanceTextTabButton = ReplaceAll(
+          instanceTextTabButton,
+          isActiveNewKey,
+          isActiveCurrentString
+        );
+
+        containerTabButtonsElement.innerHTML += "\n" + instanceTextTabButton;
+
+        instanceTextTabPane = templateTabPaneString;
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          "%tabLabel%",
+          tabsData[tabIndex].label
+        );
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          "%tabId%",
+          tabsData[tabIndex].id
+        );
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          "%tabPaneContent%",
+          tabsData[tabIndex].content
+        );
+
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          isActiveTrueString,
+          isActiveNewKey
+        );
+
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          isActiveFalseString,
+          isActiveNewKey
+        );
+
+        instanceTextTabPane = ReplaceAll(
+          instanceTextTabPane,
+          isActiveNewKey,
+          isActiveCurrentString
+        );
+
+        containerTabPanesElement.innerHTML += "\n" + instanceTextTabPane;
+      }
+    </script>
   </div>
 
   <div class="container-fluid p-5 text-left">
@@ -762,10 +915,6 @@
 
   <!--populating data-->
   <script>
-    function ReplaceAll(wholeString, key, replacement) {
-      //https://stackoverflow.com/questions/1144783/how-do-i-replace-all-occurrences-of-a-string-in-javascript
-      return wholeString.split(key).join(replacement);
-    }
     demoDivElement = document.getElementById("demo");
 
     noteTemplateString = document.getElementById("templateNote").innerHTML;
@@ -881,8 +1030,6 @@
       );
       projects[projectIndicesById[notes[noteIndex].projectId]].noteHtmlText +=
         notes[noteIndex].htmlText + "\n";
-
-      console.log(noteText);
     }
 
     for (projectIndex in projects) {
@@ -1003,7 +1150,7 @@
       if (stints[stintIndex].logoImg) {
         stintImgText = stints[stintIndex].logoImg;
       }
-      stintText = ReplaceAll(stintText, "%IMGSRC%", stintImgText);
+      stintText = ReplaceAll(stintText, "loading.jpg", stintImgText);
       stintText = ReplaceAll(stintText, "<!--", "");
       stintText = ReplaceAll(stintText, "-->", "");
 
@@ -1016,13 +1163,5 @@
 
       demoDivElement.innerHTML += stintText + "\n";
     }
-
-    /*
-    console.log(companies);
-    console.log(stintIndicesById);
-    console.log(stints);
-    console.log(projects);
-    console.log(notes);
-    //*/
   </script>
 </html>
