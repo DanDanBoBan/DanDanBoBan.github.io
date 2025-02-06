@@ -704,6 +704,13 @@
       </div>
     </div>
     <div id="templateStint">
+      <div id="%ID%" class="container bg-dark text-white p-2">
+        <div class="stint"><h3>%LABEL%</h3></div>
+        <div class="stint stintDate %DATEVISIBLE%">
+          %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
+        </div>
+        <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
+      </div>
       <div id="%ID%" class="container-fluid p-5 text-left">
         <div class="container mt-5">
           <div class="row">
@@ -900,15 +907,17 @@
     </script>
   </div>
 
-  <div class="container-fluid p-5 text-left">
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2>Project History</h2>
+  <!-- Project history label. Do we even need that?
+    <div class="container-fluid p-5 text-left">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Project History</h2>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  -->
 
   <!--DEMO!-->
   <div id="demo"></div>
@@ -1136,7 +1145,7 @@
           stints[stintIndex].dateEndYear
         );
       }
-      stintHasRole = stints[stintIndex].role == true;
+      stintHasRole = stints[stintIndex].role ? true : false;
       stintText = ReplaceAll(
         stintText,
         "%ROLEVISIBLE%",
