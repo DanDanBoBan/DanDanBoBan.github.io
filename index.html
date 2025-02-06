@@ -698,9 +698,20 @@
     </div>
     <div id="templateProject">
       <div id="%ID%">
-        <div><h4>%LABEL%</h4></div>
-        <div>%NOTES%</div>
-        <div class="projectChallenges collapsed">%CHALLENGES%</div>
+        <div
+          id="divider%ID%"
+          class="container bg-dark collapsed"
+          style="height: 3"
+        ></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6"><h4>%LABEL%</h4></div>
+            <div class="col-sm-6">
+              <div id="notesContainer%ID%" class="collapsed"></div>
+              <div id="challengesContainer%ID%" class="collapsed"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="templateStint">
@@ -712,26 +723,6 @@
         <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
       </div>
       <div class="container" id="containerForProjects%ID%"></div>
-      <div id="%ID%" class="container-fluid p-5 text-left">
-        <div class="container mt-5">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="stint"><h3>%LABEL%</h3></div>
-              <div class="stint stintDate %DATEVISIBLE%">
-                %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
-              </div>
-              <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
-              <div class="ratio ratio-21x9">
-                <img style="object-fit: cover" src="./images/loading.jpg" />
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="stint">%PROJECTS%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="%ID%" class="stint"></div>
     </div>
     <div id="templateSocialLink">
       <div>
@@ -1175,9 +1166,20 @@
     }
 
     for (projectIndex in projects) {
-      document.getElementById(
+      projectContainerEl = document.getElementById(
         "containerForProjects" + projects[projectIndex].stintId
-      ).innerHTML += "\n" + projects[projectIndex].htmlText;
+      );
+      shouldRevealDivider = projectContainerEl.innerHTML ? true : false;
+      console.log(projects[projectIndex].label + ":" + shouldRevealDivider);
+
+      projectContainerEl.innerHTML += "\n" + projects[projectIndex].htmlText;
+
+      if (shouldRevealDivider) {
+        projectDividerEl = document.getElementById(
+          "divider" + projects[projectIndex].id
+        );
+        projectDividerEl.classList.remove("collapsed");
+      }
     }
   </script>
 </html>
