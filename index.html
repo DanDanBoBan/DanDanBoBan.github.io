@@ -711,6 +711,7 @@
         </div>
         <div class="stint stintRole %ROLEVISIBLE%">%ROLE%</div>
       </div>
+      <div class="container" id="containerForProjects%ID%"></div>
       <div id="%ID%" class="container-fluid p-5 text-left">
         <div class="container mt-5">
           <div class="row">
@@ -1171,6 +1172,12 @@
       //*/
 
       demoDivElement.innerHTML += stintText + "\n";
+    }
+
+    for (projectIndex in projects) {
+      document.getElementById(
+        "containerForProjects" + projects[projectIndex].stintId
+      ).innerHTML += "\n" + projects[projectIndex].htmlText;
     }
   </script>
 </html>
