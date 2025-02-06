@@ -173,7 +173,7 @@
         challenges: [
           {
             label: "Rapid Prototyping",
-            contentBase: "projectOscarChallengeStrike",
+            id: "projectOscarChallengeStrike",
           },
         ],
       },
@@ -196,6 +196,7 @@
         label: "Fuser",
         role: "Gameplay Prototyping And UI Scripting",
         summaryId: "projectFuserSummary",
+        challenges: [{ label: "Fuser Crate", id: "FuserCrate" }],
       },
       {
         id: "projectFeral",
@@ -413,7 +414,7 @@
       project and making it more profitable.
     </div>
     <div id="projectOscarChallengeStrike">
-      <div id="projectOscarChallengeStrikeProblem">
+      <div id="projectOscarChallengeStrikeProblemDescContent">
         The first easy win that we wanted to pursue was playing with map size
         and layout. Unfortunately, most of the game's systems assumed that
         levels would be User-Generated, and built within a strict ruleset.
@@ -421,13 +422,13 @@
         some external server. Our rapid prototyping phase was not as rapid as we
         needed it to be.
       </div>
-      <div id="projectOscarChallengeStrikeWork">
+      <div id="projectOscarChallengeStrikeWorkDescContent">
         After a few sprints of slow progress, I pitched the idea of spinning off
         a small prototyping strike team. This strike team would take some time
         experimenting with new moment-to-moment gameplay mechanics that might
         keep players engaged.
       </div>
-      <div id="projectOscarChallengeStrikeResult">
+      <div id="projectOscarChallengeStrikeResultDescContent">
         This is the result of that
       </div>
     </div>
@@ -532,6 +533,16 @@
       way back up.
     </div>
     <div id="noteFuserCratedesc">
+      The Crate Creation Screen is where the player would build a loadout of the
+      music-creation content that they would be bringing into the game. This
+      screen features a good example of a tab list. I did a bunch of work to
+      make it easier for artists and scripters to change those on the fly in a
+      consistent and human-error-resistant way. I did most of the scripting on
+      the song-selection tab. Blueprint Scripting: Me and the programmers at
+      Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
+      Team
+    </div>
+    <div id="FuserCrateProblemDescContent">
       The Crate Creation Screen is where the player would build a loadout of the
       music-creation content that they would be bringing into the game. This
       screen features a good example of a tab list. I did a bunch of work to
@@ -686,14 +697,19 @@
       </div>
     </div>
     <div id="templateChallenge">
-      <div>
-        <div class="challengeLabel"><h5>%LABEL%</h5></div>
-        <!--<div class="challengeSectionLabel">Challenge</div>-->
-        <div class="challengeProblem collapsed">%Problem%</div>
-        <div class="challengeSectionLabel">Work Done</div>
-        <div class="challengeWork collapsed">%Work%</div>
-        <div class="challengeSectionLabel">Result</div>
-        <div class="challengeResult collapsed">%Result%</div>
+      <div id="%ID%">
+        <div><h5 id="%ID%ProblemLabel"></h5></div>
+        <div id="%ID%Problem">
+          <div id="%ID%ProblemDesc"></div>
+        </div>
+        <div id="%ID%Work">
+          <div class="challengeSectionLabel">Work Done</div>
+          <div id="%ID%WorkDesc"></div>
+        </div>
+        <div id="%ID%Result">
+          <div class="challengeSectionLabel">Result</div>
+          <div id="%ID%ResultDesc"></div>
+        </div>
       </div>
     </div>
     <div id="templateProject">
@@ -1179,6 +1195,46 @@
           "divider" + projects[projectIndex].id
         );
         projectDividerEl.classList.remove("collapsed");
+      }
+      if (projects[projectIndex].challenges) {
+        challengeContainerEl = document.getElementById(
+          "challengesContainer" + projects[projectIndex].id
+        );
+        challengeContainerEl.classList.remove("collapsed");
+
+        for (challengeIndex in projects[projectIndex].challenges) {
+          challengeElementText = challengeTemplateString;
+          challengeIdText =
+            projects[projectIndex].challenges[challengeIndex].id;
+
+          challengeElementText = ReplaceAll(
+            challengeElementText,
+            "%ID%",
+            challengeIdText
+          );
+
+          challengeContainerEl.innerHTML += challengeElementText;
+
+          labelContainerEl = document.getElementById(
+            challengeIdText + "ProblemLabel"
+          );
+          labelContainerEl.innerHTML =
+            projects[projectIndex].challenges[challengeIndex].label;
+
+          suffixes = ["Problem", "Work", "Result"];
+          for (suffixIndex in suffixes) {
+            contentEl = document.getElementById(
+              challengeIdText + suffixes[suffixIndex] + "DescContent"
+            );
+            if (contentEl) {
+              document
+                .getElementById(
+                  challengeIdText + suffixes[suffixIndex] + "Desc"
+                )
+                .appendChild(contentEl);
+            }
+          }
+        }
       }
     }
   </script>
