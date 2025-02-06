@@ -196,7 +196,13 @@
         label: "Fuser",
         role: "Gameplay Prototyping And UI Scripting",
         summaryId: "projectFuserSummary",
-        challenges: [{ label: "Fuser Crate", id: "FuserCrate" }],
+        challenges: [
+          {
+            label: "Fuser Crate",
+            id: "FuserCrate",
+            imgSrc: "screen-fuser-crate.png",
+          },
+        ],
       },
       {
         id: "projectFeral",
@@ -699,6 +705,11 @@
     <div id="templateChallenge">
       <div id="%ID%">
         <div><h5 id="%ID%ProblemLabel"></h5></div>
+        <div>
+          <div id="%ID%ImgSection" class="collapsed ratio ratio-16x9">
+            <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
+          </div>
+        </div>
         <div id="%ID%Problem">
           <div id="%ID%ProblemDesc"></div>
         </div>
@@ -1220,6 +1231,16 @@
           );
           labelContainerEl.innerHTML =
             projects[projectIndex].challenges[challengeIndex].label;
+
+          if (projects[projectIndex].challenges[challengeIndex].imgSrc) {
+            document
+              .getElementById(challengeIdText + "ImgSection")
+              .classList.remove("collapsed");
+
+            document.getElementById(challengeIdText + "ImgElement").src =
+              "./images/" +
+              projects[projectIndex].challenges[challengeIndex].imgSrc;
+          }
 
           suffixes = ["Problem", "Work", "Result"];
           for (suffixIndex in suffixes) {
