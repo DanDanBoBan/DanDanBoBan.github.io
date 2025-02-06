@@ -55,6 +55,11 @@
     img.stintImg {
       height: 100px;
     }
+    img.fullScreenModal {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
     /*div.stint {
         background-color: blue;
       }*/
@@ -706,8 +711,21 @@
       <div id="%ID%">
         <div><h5 id="%ID%ProblemLabel"></h5></div>
         <div>
-          <div id="%ID%ImgSection" class="collapsed ratio ratio-16x9">
-            <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
+          <div id="%ID%ImgSection" class="collapsed">
+            <div class="ratio ratio-16x9">
+              <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary opacity-0"
+                  style="width: 100%; height: 100%"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                >
+                  Open modal
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div id="%ID%Problem">
@@ -940,6 +958,39 @@
 
   <!--DEMO!-->
   <div id="demo"></div>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-dark text-white">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <span id="modalHeading">Modal Heading</span>
+          </h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div style="width: 100%; height: 100%">
+            <img class="fullScreenModal" src="./images/loading.jpg" />
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--populating data-->
   <script>
