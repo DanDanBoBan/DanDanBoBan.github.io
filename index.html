@@ -414,6 +414,11 @@
         imgSrc: "screen-fuser-settings.png",
       },
     ];
+
+    function ShowImageInModal(modalTitle, imgSrc) {
+      document.getElementById("modalHeading").innerHTML = modalTitle;
+      document.getElementById("modalImg").src = imgSrc;
+    }
   </script>
 
   <!--Long Entry Content-->
@@ -721,6 +726,7 @@
                   style="width: 100%; height: 100%"
                   data-bs-toggle="modal"
                   data-bs-target="#myModal"
+                  onclick='ShowImageInModal("%LABEL%","%IMGSRC%")'
                 >
                   Open modal
                 </button>
@@ -978,7 +984,11 @@
         <!-- Modal body -->
         <div class="modal-body">
           <div style="width: 100%; height: 100%">
-            <img class="fullScreenModal" src="./images/loading.jpg" />
+            <img
+              id="modalImg"
+              class="fullScreenModal"
+              src="./images/loading.jpg"
+            />
           </div>
         </div>
 
@@ -1273,6 +1283,17 @@
             challengeElementText,
             "%ID%",
             challengeIdText
+          );
+          challengeElementText = ReplaceAll(
+            challengeElementText,
+            "%LABEL%",
+            projects[projectIndex].challenges[challengeIndex].label
+          );
+          challengeElementText = ReplaceAll(
+            challengeElementText,
+            "%IMGSRC%",
+            "./images/" +
+              projects[projectIndex].challenges[challengeIndex].imgSrc
           );
 
           challengeContainerEl.innerHTML += challengeElementText;
