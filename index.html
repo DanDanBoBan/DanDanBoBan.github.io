@@ -1308,6 +1308,16 @@
           labelContainerEl.innerHTML =
             projects[projectIndex].challenges[challengeIndex].label;
 
+          if (projects[projectIndex].challenges[challengeIndex].imgSrc) {
+            projects[projectIndex].challenges[challengeIndex].imgs = [
+              {
+                imgSrc:
+                  projects[projectIndex].challenges[challengeIndex].imgSrc,
+                label: projects[projectIndex].challenges[challengeIndex].label,
+              },
+            ];
+          }
+
           for (imgIndex in projects[projectIndex].challenges[challengeIndex]
             .imgs) {
             document
