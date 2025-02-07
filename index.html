@@ -203,9 +203,19 @@
         summaryId: "projectFuserSummary",
         challenges: [
           {
-            label: "Fuser Crate",
+            label: "Crate Screen",
             id: "FuserCrate",
             imgSrc: "screen-fuser-crate.png",
+          },
+          {
+            label: "Main Menu",
+            id: "FuserMain",
+            imgSrc: "screen-fuser-main.png",
+          },
+          {
+            label: "Settings Screen",
+            id: "FuserSettings",
+            imgSrc: "screen-fuser-settings.png",
           },
         ],
       },
@@ -398,21 +408,6 @@
         projectId: "projectFeral",
         imgSrc: "screen-feral-shop-b.jpg",
       },
-      {
-        id: "noteFuserCrate",
-        projectId: "projectFuser",
-        imgSrc: "screen-fuser-crate.png",
-      },
-      {
-        id: "noteFuserMain",
-        projectId: "projectFuser",
-        imgSrc: "screen-fuser-main.png",
-      },
-      {
-        id: "noteFuserSettings",
-        projectId: "projectFuser",
-        imgSrc: "screen-fuser-settings.png",
-      },
     ];
 
     function ShowImageInModal(modalTitle, imgSrc) {
@@ -548,16 +543,6 @@
       others, they would be diving into deep trenches and then battling their
       way back up.
     </div>
-    <div id="noteFuserCratedesc">
-      The Crate Creation Screen is where the player would build a loadout of the
-      music-creation content that they would be bringing into the game. This
-      screen features a good example of a tab list. I did a bunch of work to
-      make it easier for artists and scripters to change those on the fly in a
-      consistent and human-error-resistant way. I did most of the scripting on
-      the song-selection tab. Blueprint Scripting: Me and the programmers at
-      Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
-      Team
-    </div>
     <div id="FuserCrateProblemDescContent">
       The Crate Creation Screen is where the player would build a loadout of the
       music-creation content that they would be bringing into the game. This
@@ -568,7 +553,7 @@
       Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
       Team
     </div>
-    <div id="noteFuserMaindesc">
+    <div id="FuserMainProblemDescContent">
       The main menu for fuser. It features a skeleton footprint for each element
       that requires data to be fetched dynamically from the server. I
       coordinated with the artists in the efforts to systemize the behavior of
@@ -576,7 +561,7 @@
       functionality. Blueprint Scripting: Me and the programmers at Harmonix /
       Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
     </div>
-    <div id="noteFuserSettingsdesc">
+    <div id="FuserSettingsProblemDescContent">
       Fuser's settings screen. For some reason, finding good ways to organize
       settings data and widgets is super satisfying for me. Blueprint Scripting:
       Me and the programmers at Harmonix / Code Hooks: Harmonix Engineers / Art
