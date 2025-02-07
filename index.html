@@ -211,7 +211,7 @@
           {
             label: "Crate Screen",
             id: "FuserCrate",
-            imgSrc: "screen-fuser-crate.png",
+            imgs: [{ imgSrc: "screen-fuser-crate.png" }],
           },
           {
             label: "Main Menu",
@@ -230,7 +230,16 @@
         stintId: "insomniacStintA",
         label: "Feral Rites",
         role: "User Interface Scripting",
-        summaryId: "projectFeralSummary",
+        challenges: [
+          {
+            id: "projectFeralChallengeThreeDee",
+            label: "3D UI Development",
+            imgs: [
+              { label: "3D UI Development", imgSrc: "screen-feral-shop-a.jpg" },
+              { label: "3D UI Development", imgSrc: "screen-feral-shop-b.jpg" },
+            ],
+          },
+        ],
       },
       {
         id: "projectRatchet",
@@ -507,7 +516,7 @@
         images with the appropriate data.
       </p>
     </div>
-    <div id="projectFeralSummary">
+    <div id="projectFeralChallengeThreeDeeProblemDescContent">
       This was a fun exercise in figuring out how to place information panels in
       a way that the player could explore them and find the information they
       were looking for.
@@ -707,23 +716,7 @@
       <div id="%ID%">
         <div><h5 id="%ID%ProblemLabel"></h5></div>
         <div>
-          <div id="%ID%ImgSection" class="collapsed">
-            <div class="ratio ratio-16x9">
-              <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
-              <div>
-                <button
-                  type="button"
-                  class="btn btn-primary opacity-0"
-                  style="width: 100%; height: 100%"
-                  data-bs-toggle="modal"
-                  data-bs-target="#myModal"
-                  onclick='ShowImageInModal("%LABEL%","%IMGSRC%")'
-                >
-                  Open modal
-                </button>
-              </div>
-            </div>
-          </div>
+          <div id="%ID%ImgSection" class="collapsed"></div>
         </div>
         <div id="%ID%Problem">
           <div id="%ID%ProblemDesc"></div>
@@ -735,6 +728,23 @@
         <div id="%ID%Result">
           <div class="challengeSectionLabel">Result</div>
           <div id="%ID%ResultDesc"></div>
+        </div>
+      </div>
+    </div>
+    <div id="templateChallengeThumb">
+      <div class="ratio ratio-16x9">
+        <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary opacity-0"
+            style="width: 100%; height: 100%"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            onclick='ShowImageInModal("%LABEL%","%IMGSRC%")'
+          >
+            Open modal
+          </button>
         </div>
       </div>
     </div>
@@ -1006,6 +1016,9 @@
     stintTemplateString = document.getElementById("templateStint").innerHTML;
     challengeTemplateString =
       document.getElementById("templateChallenge").innerHTML;
+    challengeThumbnailTemplateString = document.getElementById(
+      "templateChallengeThumb"
+    ).innerHTML;
     companyIndicesById = [];
     stintIndicesById = [];
     projectIndicesById = [];
@@ -1295,14 +1308,47 @@
           labelContainerEl.innerHTML =
             projects[projectIndex].challenges[challengeIndex].label;
 
-          if (projects[projectIndex].challenges[challengeIndex].imgSrc) {
+          for (imgIndex in projects[projectIndex].challenges[challengeIndex]
+            .imgs) {
             document
               .getElementById(challengeIdText + "ImgSection")
               .classList.remove("collapsed");
 
-            document.getElementById(challengeIdText + "ImgElement").src =
+            thumbnailTextCurrent = challengeThumbnailTemplateString;
+
+            headingText = projects[projectIndex].challenges[challengeIndex]
+              .imgs[imgIndex].label
+              ? projects[projectIndex].challenges[challengeIndex].imgs[imgIndex]
+                  .label
+              : projects[projectIndex].challenges[challengeIndex].label;
+
+            thumbnailTextCurrent = ReplaceAll(
+              thumbnailTextCurrent,
+              "%ID%",
+              challengeIdText + "Thumb" + imgIndex
+            );
+            thumbnailTextCurrent = ReplaceAll(
+              thumbnailTextCurrent,
+              "loading.jpg",
+              projects[projectIndex].challenges[challengeIndex].imgs[imgIndex]
+                .imgSrc
+            );
+            thumbnailTextCurrent = ReplaceAll(
+              thumbnailTextCurrent,
+              "%LABEL%",
+              projects[projectIndex].challenges[challengeIndex].imgs[imgIndex]
+                .label
+            );
+            thumbnailTextCurrent = ReplaceAll(
+              thumbnailTextCurrent,
+              "%IMGSRC%",
               "./images/" +
-              projects[projectIndex].challenges[challengeIndex].imgSrc;
+                projects[projectIndex].challenges[challengeIndex].imgs[imgIndex]
+                  .imgSrc
+            );
+
+            document.getElementById(challengeIdText + "ImgSection").innerHTML +=
+              "\n" + thumbnailTextCurrent + "\n";
           }
 
           suffixes = ["Problem", "Work", "Result"];
