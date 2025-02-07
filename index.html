@@ -289,6 +289,18 @@
               "Demiurge Studios Engineering Team, BioWare Engineering Team",
           },
         ],
+        challenges: [
+          {
+            id: "projectStationChallengeGame",
+            label: "Gameplay Scripting",
+            imgSrc: "screen-station-game.jpg",
+          },
+          {
+            id: "projectStationChallengeBoard",
+            label: "Scoreboard Scripting",
+            imgSrc: "screen-station-board.jpg",
+          },
+        ],
       },
       {
         id: "projectSmr",
@@ -304,85 +316,32 @@
           { role: "Level Art", assignee: "Demiurge Studios Art Team" },
           { role: "Code", assignee: "Demiurge Studios Engineering Team" },
         ],
+        challenges: [
+          {
+            id: "projectSmrChallengeFarmland",
+            label: "Farmland Siege",
+            imgSrc: "screen-smr-farm.jpg",
+          },
+          {
+            id: "projectSmrChallengeOutskirts",
+            label: "Outskirts Ambush",
+            imgSrc: "screen-smr-outskirts.jpg",
+          },
+          {
+            id: "projectSmrChallengeCliffs",
+            label: "Cliffs Survival",
+            imgSrc: "screen-smr-cliffs.jpg",
+          },
+          {
+            id: "projectSmrChallengeCity",
+            label: "Downtown Roadblock",
+            imgSrc: "screen-smr-city.jpg",
+          },
+        ],
       },
     ];
 
     notes = [
-      {
-        id: "noteSmrFarmland",
-        projectId: "projectSmr",
-        imgSrc: "screen-smr-farm.jpg",
-        useProjectCredits: true,
-      },
-      {
-        id: "noteSmrOutskirts",
-        projectId: "projectSmr",
-        imgSrc: "screen-smr-outskirts.jpg",
-        useProjectCredits: true,
-      },
-      {
-        id: "noteSmrCliffs",
-        projectId: "projectSmr",
-        imgSrc: "screen-smr-cliffs.jpg",
-        useProjectCredits: true,
-      },
-      {
-        id: "noteSmrCity",
-        projectId: "projectSmr",
-        imgSrc: "screen-smr-city.jpg",
-        useProjectCredits: true,
-      },
-      {
-        id: "noteStationGame",
-        projectId: "projectStation",
-        imgSrc: "screen-station-game.jpg",
-        useProjectCredits: true,
-        creditsPrefix: [
-          {
-            role: "Game Mode Kismet Scripting",
-            assignee: "Dan Chretien",
-          },
-        ],
-      },
-      {
-        id: "noteStationBoard",
-        projectId: "projectStation",
-        imgSrc: "screen-station-board.jpg",
-        useProjectCredits: true,
-        creditsPrefix: [
-          {
-            role: "Scoreboard Kismet Scripting",
-            assignee: "Dan Chretien",
-          },
-        ],
-      },
-      {
-        id: "noteBugHuntLate",
-        projectId: "projectBugHunt",
-        imgSrc: "screen-aliens-late.jpg",
-        useProjectCredits: true,
-        creditsPrefix: [
-          { role: '"Tribute" Enemy Wave Authoring', assignee: "Dan Chretien" },
-        ],
-      },
-      {
-        id: "noteBugHuntHall",
-        projectId: "projectBugHunt",
-        imgSrc: "screen-aliens-hall.jpg",
-        useProjectCredits: true,
-        creditsPrefix: [
-          { role: '"Tribute" Level Markup', assignee: "Dan Chretien" },
-        ],
-      },
-      {
-        id: "noteBugHuntCorner",
-        projectId: "projectBugHunt",
-        imgSrc: "screen-aliens-corner.jpg",
-        useProjectCredits: true,
-        creditsPrefix: [
-          { role: '"Tribute" Level Markup', assignee: "Dan Chretien" },
-        ],
-      },
       {
         id: "noteSunsetChallenges",
         projectId: "projectSunset",
@@ -412,16 +371,6 @@
         id: "noteRatchetCollection",
         projectId: "projectRatchet",
         imgSrc: "screen-ratchet-collection.png",
-      },
-      {
-        id: "noteFeralShopA",
-        projectId: "projectFeral",
-        imgSrc: "screen-feral-shop-a.jpg",
-      },
-      {
-        id: "noteFeralShopB",
-        projectId: "projectFeral",
-        imgSrc: "screen-feral-shop-b.jpg",
       },
     ];
 
@@ -582,21 +531,23 @@
       Me and the programmers at Harmonix / Code Hooks: Harmonix Engineers / Art
       and UX: Harmonix UI Art Team
     </div>
-    <div id="noteFeralShopAdesc">
-      The Shop Screen that I helped build on Feral Rites. The panels are all
-      angled toward the player, similar to the way one might rotate their
-      screens in a multi-monitor setup. I did the majority of the scripting on
-      this screen. I also built the 3D model that the menu was projected on. I
-      laid out the panels in Flash to work as a UV map for the menu mesh.
-      ActionScript: Me, until I left Insomniac. Wrapped up by Insomniac East, I
-      believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI
-      Art Team
-    </div>
-    <div id="noteFeralShopBdesc">
-      An additional confirmation panel that pops up when you want to buy
-      something at The Shop Screen. ActionScript: Me, until I left Insomniac.
-      Wrapped up by Insomniac East, I believe. / Code Hooks: Insomniac UI
-      Engineers / Art and UX: Insomniac UI Art Team
+    <div id="projectFeralChallengeThreeDeeProblemDescContent">
+      <p>
+        The Shop Screen that I helped build on Feral Rites. The panels are all
+        angled toward the player, similar to the way one might rotate their
+        screens in a multi-monitor setup. I did the majority of the scripting on
+        this screen. I also built the 3D model that the menu was projected on. I
+        laid out the panels in Flash to work as a UV map for the menu mesh.
+        ActionScript: Me, until I left Insomniac. Wrapped up by Insomniac East,
+        I believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac
+        UI Art Team
+      </p>
+      <p>
+        An additional confirmation panel that pops up when you want to buy
+        something at The Shop Screen. ActionScript: Me, until I left Insomniac.
+        Wrapped up by Insomniac East, I believe. / Code Hooks: Insomniac UI
+        Engineers / Art and UX: Insomniac UI Art Team
+      </p>
     </div>
     <div id="noteRatchetCollectiondesc">
       The Card Collection screen from Ratchet & Clank (2016). Players were able
@@ -635,19 +586,19 @@
       the concepts that our Artists had created. ActionScript: Me. / Code Hooks:
       Insomniac UI Engineers / Art and UX: Insomniac UI Art Team
     </div>
-    <div id="noteBugHuntHalldesc">
+    <div id="projectBugHuntChallengeHallProblemDescContent">
       A hallway on the lower level of the "Tribute" map. A bunch of effort went
       into making sure the spawn points in the vents were positioned just right
       so that players couldn't fall into the vents, but the aliens could still
       climb out.
     </div>
-    <div id="noteBugHuntLatedesc">
+    <div id="projectBugHuntChallengeLateProblemDescContent">
       A scene from later in the "Tribute" map. As players progress through the
       various waves, we started introducing stronger variants of each xenomorph
       class. These stronger variants were distinguishable by meshes attached to
       their base meshes.
     </div>
-    <div id="noteBugHuntCornerdesc">
+    <div id="projectBugHuntChallengeCornerProblemDescContent">
       An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
       around the levels, the xenomorphs used hand-authored grip points. The grip
       points served as a great way to prevent the player from just turtling up
@@ -655,18 +606,18 @@
       moment. Level Geo: Demiurge Art and Design team / Level Markup: Me / Code:
       Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
     </div>
-    <div id="noteStationGamedesc">
+    <div id="projectStationChallengeGameProblemDescContent">
       A screenshot of the capture-and-hold game mode built for Pinnacle Station.
       I built the game mode logic graphs in Kismet 3, and we just had to
       copy-paste them for each instance of the game mode that we used.
     </div>
-    <div id="noteStationBoarddesc">
+    <div id="projectStationChallengeBoardProblemDescContent">
       Building the results screen was super tricky! We didn't have access to any
       of the usual UI construction tools, so we had to basically just bake our
       text into textures, and then swap out the textures used in the materials
       on a series of planes attached to the camera.
     </div>
-    <div id="noteSmrFarmlanddesc">
+    <div id="projectSmrChallengeFarmlandProblemDescContent">
       The first survival mission that I worked on, 'Farmland Siege' also ended
       up being my favorite. It has two nice bowl-shaped arenas on either side of
       the map divided by a hill in the center. The platforms are positioned in a
@@ -675,14 +626,14 @@
       completed, one of our artists jazzed up the surrounding environment with
       additional props and lighting.
     </div>
-    <div id="noteSmrOutskirtsdesc">
+    <div id="projectSmrChallengeOutskirtsProblemDescContent">
       'Outskirts Ambush' flanks the player with enemies and drives them to the
       center hill. The center hill provides two major combat moments: battling
       one's way up the hill to attack enemies on the left, and leaping across
       the hill into the fray on the right. After the initial geo pass, art added
       some awesome props, lighting and animated life to the background.
     </div>
-    <div id="noteSmrCliffsdesc">
+    <div id="projectSmrChallengeCliffsProblemDescContent">
       'Cliffs Survival' makes a little more use of vertical space. Stationary
       ranged enemies and fliers fire down at the player, luring the player up
       across the platforms to engage them. Once the initial geo blockout was
@@ -690,7 +641,7 @@
       Our lead designer also took a pass, adding in the interactive objects that
       can be detonated to damage the robots.
     </div>
-    <div id="noteSmrCitydesc">
+    <div id="projectSmrChallengeCityProblemDescContent">
       My goal in 'Downtown Roadblock' was to cycle players toward the edges of
       the map, up onto the platforms and then back into the center. Ranged
       enemies drive the player under the ledges the edges of the map, and then
