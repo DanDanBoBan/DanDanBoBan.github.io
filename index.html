@@ -171,22 +171,23 @@
 
     projects = [
       {
-        id: "projectOscarStealth",
+        id: "projectOscar",
         stintId: "demiurgeStintB",
         label: "Project Oscar", //"MOBA Stealth and Cover",
-        summaryId: "projectOscarStealthSummary",
         challenges: [
           {
             label: "Rapid Prototyping",
             id: "projectOscarChallengeStrike",
           },
+          {
+            id: "projectOscarChallengeStealth",
+            label: "MOBA Stealth",
+          },
+          {
+            id: "projectOscarChallengeKits",
+            label: "Player Kit Abilities",
+          },
         ],
-      },
-      {
-        id: "projectOscarKits",
-        stintId: "demiurgeStintB",
-        label: "Player Kit Abilities",
-        summaryId: "projectOscarKitsSummary",
       },
       {
         id: "projectCat",
@@ -443,7 +444,7 @@
         This is the result of that
       </div>
     </div>
-    <div id="projectOscarStealthSummary">
+    <div id="projectOscarChallengeStealthProblemDescContent">
       <p>
         Using Unreal Blueprint, we explored how we might encourage players to
         leverage different aspects of the environment in order to gain an
@@ -463,7 +464,7 @@
         angles that would protect them from damage.
       </p>
     </div>
-    <div id="projectOscarKitsSummary">
+    <div id="projectOscarChallengeKitsProblemDescContent">
       I was able to quickly whip up a bunch of new characters for the
       aforementioned MOBA by quickly scripting new abilities for them using
       Unreal Blueprint. The modular, component-based nature of their
