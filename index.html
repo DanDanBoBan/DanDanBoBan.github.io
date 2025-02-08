@@ -692,11 +692,11 @@
         <div id="%ID%Problem">
           <div id="%ID%ProblemDesc"></div>
         </div>
-        <div id="%ID%Work">
+        <div id="%ID%Work" class="collapsed">
           <div class="challengeSectionLabel">Work Done</div>
           <div id="%ID%WorkDesc"></div>
         </div>
-        <div id="%ID%Result">
+        <div id="%ID%Result" class="collapsed">
           <div class="challengeSectionLabel">Result</div>
           <div id="%ID%ResultDesc"></div>
         </div>
@@ -1128,8 +1128,10 @@
           );
 
           suffixes = ["Problem", "Work", "Result"];
+          suffixesToReveal = [];
 
           for (suffixIndex in suffixes) {
+            //console.log(suffixes[suffixIndex]);
             challengeElement = document.getElementById(
               projects[projectIndex].challenges[challengeIndex].contentBase +
                 suffixes[suffixIndex]
@@ -1145,9 +1147,22 @@
                 "%" + suffixes[suffixIndex] + "%",
                 challengeElement.innerHTML
               );
+              suffixesToReveal.push(suffixes[suffixIndex]);
             }
           }
           allChallengesText = "\n" + currentChallengeText;
+          for (suffixIndex in suffixesToReveal) {
+            console.log(
+              projects[projectIndex].challenges[challengeIndex].id +
+                suffixesToReveal[suffixIndex]
+            );
+            document
+              .getElementById(
+                projects[projectIndex].challenges[challengeIndex].id +
+                  suffixesToReveal[suffixIndex]
+              )
+              .classList.remove("collapsed");
+          }
         }
         projectText = ReplaceAll(
           projectText,
@@ -1279,6 +1294,7 @@
           labelContainerEl.innerHTML =
             projects[projectIndex].challenges[challengeIndex].label;
 
+          //If we have a single imgSrc, add it to the list of imgs
           if (projects[projectIndex].challenges[challengeIndex].imgSrc) {
             projects[projectIndex].challenges[challengeIndex].imgs = [
               {
@@ -1289,6 +1305,7 @@
             ];
           }
 
+          //for each img, add a clickable thumbnail
           for (imgIndex in projects[projectIndex].challenges[challengeIndex]
             .imgs) {
             document
@@ -1332,17 +1349,29 @@
               "\n" + thumbnailTextCurrent + "\n";
           }
 
+          //Reveal problem work and results
           suffixes = ["Problem", "Work", "Result"];
           for (suffixIndex in suffixes) {
+            console.log("find content element for " + suffixes[suffixIndex]);
+            console.log(
+              "Id is: " +
+                challengeIdText +
+                suffixes[suffixIndex] +
+                "DescContent"
+            );
             contentEl = document.getElementById(
               challengeIdText + suffixes[suffixIndex] + "DescContent"
             );
             if (contentEl) {
+              console.log("Found it!");
+              console.log(contentEl);
+              parentEl = document.getElementById(
+                challengeIdText + suffixes[suffixIndex] + "Desc"
+              );
+              parentEl.appendChild(contentEl);
               document
-                .getElementById(
-                  challengeIdText + suffixes[suffixIndex] + "Desc"
-                )
-                .appendChild(contentEl);
+                .getElementById(challengeIdText + suffixes[suffixIndex])
+                .classList.remove("collapsed");
             }
           }
         }
