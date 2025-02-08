@@ -181,7 +181,7 @@
           },
           {
             id: "projectOscarChallengeStealth",
-            label: "MOBA Stealth",
+            label: "Expressive MOBA Stealth",
           },
           {
             id: "projectOscarChallengeKits",
@@ -402,11 +402,11 @@
 
   <!--Long Entry Content-->
   <div id="content" class="collapsed">
-    <div id="projectOscarDesc">
+    <div id="projectOscarDescContent">
       Project Oscar was a tactical brawler reminiscent of a MOBA. The client had
-      soft-launched a project but found it was not as financially successful as
-      it had the potential to be. Demiurge was tasked with taking over the
-      project and making it more profitable.
+      soft-launched a real-time tactics project and found it was not meeting its
+      financial potential. Demiurge was tasked with taking over the project and
+      making it more profitable.
     </div>
     <div id="projectOscarChallengeStrike">
       <div id="projectOscarChallengeStrikeProblemDescContent">
@@ -730,6 +730,7 @@
           <div class="row">
             <div class="col-sm-6"><h4>%LABEL%</h4></div>
             <div class="col-sm-6">
+              <div id="%ID%Desc" class="collapsed"></div>
               <div id="notesContainer%ID%" class="collapsed"></div>
               <div id="challengesContainer%ID%" class="collapsed"></div>
             </div>
@@ -1251,6 +1252,20 @@
       console.log(projects[projectIndex].label + ":" + shouldRevealDivider);
 
       projectContainerEl.innerHTML += "\n" + projects[projectIndex].htmlText;
+
+      projectDescContentEl = document.getElementById(
+        projects[projectIndex].id + "DescContent"
+      );
+      if (projectDescContentEl) {
+        projects[projectIndex].desc = projectDescContentEl.innerHTML;
+      }
+      if (projects[projectIndex].desc) {
+        document.getElementById(projects[projectIndex].id + "Desc").innerHTML =
+          projects[projectIndex].desc;
+        document
+          .getElementById(projects[projectIndex].id + "Desc")
+          .classList.remove("collapsed");
+      }
 
       if (shouldRevealDivider) {
         projectDividerEl = document.getElementById(
