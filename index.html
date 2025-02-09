@@ -16,6 +16,9 @@
     div.collapsed {
       display: none;
     }
+    span.collapsed {
+      display: none;
+    }
     div.divVisible {
       display: block;
     }
@@ -161,12 +164,14 @@
         role: "Game Designer",
         logoImg: "logo-co-demiurge-old.png",
       },
+      /*
       {
         id: "personalStintA",
         objectType: "stint",
         companyId: "coPersonal",
         label: "Personal Projects",
       },
+      */
     ];
 
     projects = [
@@ -174,6 +179,8 @@
         id: "projectOscar",
         stintId: "demiurgeStintB",
         label: "Project Oscar", //"MOBA Stealth and Cover",
+        released: "Unreleased",
+        platforms: "Console, PC",
         challenges: [
           /*{
             label: "Rapid Prototyping",
@@ -194,6 +201,8 @@
         stintId: "harmonixStintA",
         label: "Unreleased Music Game",
         role: "Input Collation and Data Routing using Unreal Blueprint",
+        released: "Unreleased",
+        platforms: "Google Stadia",
         challenges: [
           {
             label: "Input Behavior Consistency",
@@ -214,6 +223,8 @@
         stintId: "harmonixStintA",
         label: "Fuser",
         role: "Gameplay Prototyping And UI Scripting",
+        released: "2020",
+        platforms: "PS4, Xbox One, Switch, PC",
         credits: [
           {
             role: "Blueprint Scripting",
@@ -251,6 +262,8 @@
         stintId: "insomniacStintA",
         label: "Feral Rites",
         role: "User Interface Scripting",
+        released: "2016",
+        platforms: "Oculus Rift",
         challenges: [
           {
             id: "projectFeralChallengeThreeDee",
@@ -286,6 +299,8 @@
         label: "Ratchet & Clank",
         role: "User Interface Scripting",
         summaryId: "projectRatchetSummary",
+        released: "2016",
+        platforms: "PS4",
         credits: [
           {
             role: "ActionScript",
@@ -315,6 +330,8 @@
         label: "Sunset Overdrive",
         role: "User Interface Scripting",
         summaryId: "projectSunsetSummary",
+        released: "2014",
+        platforms: "Xbox One",
         credits: [
           {
             role: "ActionScript",
@@ -363,6 +380,8 @@
         label: "Aliens: Colonial Marines - Bug Hunt DLC",
         role: "Encounter Scripting",
         summaryId: "projectBugHuntSummary",
+        released: "2013",
+        platforms: "PS3, Xbox 360, PC",
         credits: [
           { role: "Level Blockout", assignee: "Demiurge Design Team" },
           { role: "Level Decoration", assignee: "Demiurge Art Team" },
@@ -393,6 +412,8 @@
         label: "Mass Effect: Pinnacle Station",
         role: "Encounter Scripting",
         summaryId: "projectStationSummary",
+        released: "2009",
+        platforms: "Xbox 360, PC",
         credits: [
           { role: "Level Design", assignee: "Demiurge Studios Design Team" },
           { role: "Level Art", assignee: "Demiurge Studios Art Team" },
@@ -421,6 +442,8 @@
         label: "Shoot Many Robots",
         role: "Encounter Scripting and Level Layout",
         summaryId: "projectSmr",
+        released: "2012",
+        platforms: "PS3, Xbox 360, PC",
         credits: [
           {
             role: "Level Blockout, Wave Composition",
@@ -766,7 +789,12 @@
   <!--Templates-->
   <div id="templates" class="collapsed">
     <div id="templateCredit">
-      <div><span>%ROLE%: %ASSIGNEE%</span></div>
+      <div>
+        <span
+          >%ROLE%<span class="%CONTEXTVISIBILITY%"> %CONTEXT%</span>:
+          %ASSIGNEE%</span
+        >
+      </div>
     </div>
     <div id="templateNote">
       <div id="%ID%" class="note">
@@ -821,7 +849,12 @@
         ></div>
         <div class="container">
           <div class="row">
-            <div class="col-sm-6"><h4>%LABEL%</h4></div>
+            <div class="col-sm-6">
+              <div>
+                <h4>%LABEL% <i>(%RELEASED%)</i></h4>
+              </div>
+              <div>%PLATFORMS%</div>
+            </div>
             <div class="col-sm-6">
               <div id="%ID%Desc" class="collapsed"></div>
               <div id="notesContainer%ID%" class="collapsed"></div>
@@ -1175,6 +1208,16 @@
           "%ASSIGNEE%",
           creditArray[creditIndex].assignee
         );
+        thisCreditText = ReplaceAll(
+          thisCreditText,
+          "%CONTEXT%",
+          creditArray[creditIndex].context
+        );
+        thisCreditText = ReplaceAll(
+          thisCreditText,
+          "%CONTEXTVISIBILITY%",
+          creditArray[creditIndex].context ? "" : "collapsed"
+        );
         allCreditsText += thisCreditText + "\n";
       }
       noteText = ReplaceAll(noteText, "%CREDITVISIBILITY%", visibilityText);
@@ -1197,6 +1240,16 @@
         projectText,
         "%LABEL%",
         projects[projectIndex].label
+      );
+      projectText = ReplaceAll(
+        projectText,
+        "%RELEASED%",
+        projects[projectIndex].released
+      );
+      projectText = ReplaceAll(
+        projectText,
+        "%PLATFORMS%",
+        projects[projectIndex].platforms
       );
       projectText = ReplaceAll(
         projectText,
@@ -1490,6 +1543,16 @@
                 creditText,
                 "%ASSIGNEE%",
                 currentCredit.assignee
+              );
+              creditText = ReplaceAll(
+                creditText,
+                "%CONTEXT%",
+                currentCredit.context
+              );
+              creditText = ReplaceAll(
+                creditText,
+                "%CONTEXTVISIBILITY%",
+                currentCredit.context ? "" : "collapsed"
               );
 
               creditsEl.innerHTML += creditText;
