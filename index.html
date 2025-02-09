@@ -214,6 +214,20 @@
         stintId: "harmonixStintA",
         label: "Fuser",
         role: "Gameplay Prototyping And UI Scripting",
+        credits: [
+          {
+            role: "Blueprint Scripting",
+            assignee: "Dan Chretien, Harmonix Engineering Team",
+          },
+          {
+            role: "UX Design and UI Art",
+            assignee: "Harmonix UI Art Team",
+          },
+          {
+            role: "Underlying C++ Code",
+            assignee: "Harmonix Engineering Team",
+          },
+        ],
         challenges: [
           /*{
             label: "Crate Screen",
@@ -247,6 +261,24 @@
             ],
           },
         ],
+        credits: [
+          {
+            role: "ActionScript (Shop Screen)",
+            assignee: "Dan Chretien and Insomniac UI Engineering Team",
+          },
+          {
+            role: "3D UI Layout (Shop Screen)",
+            assignee: "Dan Chretien",
+          },
+          {
+            role: "UX Design (Shop Screen)",
+            assignee: "Insomniac Gameplay Design Team, Insomniac UI Art Team",
+          },
+          {
+            role: "Underlying C++ Code",
+            assignee: "Insomniac UI Engineering Team",
+          },
+        ],
       },
       {
         id: "projectRatchet",
@@ -254,6 +286,21 @@
         label: "Ratchet & Clank",
         role: "User Interface Scripting",
         summaryId: "projectRatchetSummary",
+        credits: [
+          {
+            role: "ActionScript",
+            context: "Holocard Collection Screen",
+            assignee: "Dan Chretien and Insomniac UI Engineering Team",
+          },
+          {
+            role: "UX Design",
+            assignee: "Insomniac UI Art Team",
+          },
+          {
+            role: "Underlying C++ Code",
+            assignee: "Insomniac UI Engineering Team",
+          },
+        ],
         challenges: [
           {
             id: "projectRatchetChallengeCollection",
@@ -269,10 +316,18 @@
         role: "User Interface Scripting",
         summaryId: "projectSunsetSummary",
         credits: [
-          { role: "Level Blockout", assignee: "Demiurge Design Team" },
-          { role: "Level Decoration", assignee: "Demiurge Art Team" },
-          { role: "Game Mode Code", assignee: "Demiurge Engineering Team" },
-          { role: "Base Game Development", assignee: "Gearbox Software" },
+          {
+            role: "ActionScript",
+            assignee: "Dan Chretien and Insomniac UI Engineering Team",
+          },
+          {
+            role: "UX Art and Design",
+            assignee: "Insomniac UI Art Team",
+          },
+          {
+            role: "Underlying C++ Code",
+            assignee: "Insomniac UI Engineering Team",
+          },
         ],
         challenges: [
           {
@@ -582,8 +637,7 @@
     <div id="FuserCrateProblemDescContent">
       The Crate Screen made good use of a lot of the reusable widget kit that we
       built up for the screens in Fuser. A main frame widget had a space for a
-      screen title, Blueprint Scripting: Me and the programmers at Harmonix /
-      Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
+      screen title
     </div>
     <div id="FuserMainProblemDescContent">
       The main menu was a great example of our live data-fetching work. When
@@ -593,17 +647,13 @@
       for all of the different states that a panel's skeleton would need to
       account for and they came up with a great visual language for each of
       those states. These states included things like "fetching data", "fetch
-      failed" and "no data found". Blueprint Scripting: Me and the programmers
-      at Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
-      Team
+      failed" and "no data found".
     </div>
     <div id="FuserSettingsProblemDescContent">
       Fuser's settings screen. For some reason, finding good ways to organize
       settings data and widgets is super satisfying for me. Each of the widget
       blueprints just treats its current value like a number, and when that
-      number changes, we adjust the appropriate settings accordingly. Blueprint
-      Scripting: Me and the programmers at Harmonix / Code Hooks: Harmonix
-      Engineers / Art and UX: Harmonix UI Art Team
+      number changes, we adjust the appropriate settings accordingly.
     </div>
     <div id="projectFeralChallengeThreeDeeProblemDescContent">
       <p>
@@ -612,9 +662,6 @@
         screens in a multi-monitor setup. I did the majority of the scripting on
         this screen. I also built the 3D model that the menu was projected on. I
         laid out the panels in Flash to work as a UV map for the menu mesh.
-        ActionScript: Me, until I left Insomniac. Wrapped up by Insomniac East,
-        I believe. / Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac
-        UI Art Team
       </p>
       <p>
         An additional confirmation panel that pops up when you want to buy
@@ -626,39 +673,30 @@
     <div id="projectRatchetChallengeCollectionProblemDescContent">
       The Card Collection screen from Ratchet & Clank (2016). Players were able
       to a collection of holocards they had collected. Each completed set of
-      cards provided the player with a gameplay bonus. ActionScript: Me, and
-      also some UI Engineers at Insomniac East / Code Hooks: Insomniac UI
-      Engineers / Art and UX: Insomniac UI Art Team
+      cards provided the player with a gameplay bonus.
     </div>
     <div id="projectSunsetChallengeChallengesProblemDescContent">
       The Challenge Browser Screen combined some of the most complicated screen
       elements I worked on. The map needed to pan to the correct location, and
       the leaderboards needed to talk to the code to coordinate retrieval of the
-      correct leaderboard data. ActionScript (Navigation, calling hooks): Me. /
-      Code Hooks: Insomniac UI Engineers / Art and UX: Insomniac UI Art Team.
+      correct leaderboard data.
     </div>
     <div id="projectSunsetChallengeResultsProblemDescContent">
       The Mission Results Screen. Mostly a matter of routing data passed in from
-      code into the appropriate UI elements. ActionScript: Me. / Code Hooks:
-      Insomniac UI Engineers / Art, UX: Insomniac UI Art Team
+      code into the appropriate UI elements.
     </div>
     <div id="projectSunsetChallengeShopProblemDescContent">
       Two-Hat Jack is a shop where the player can purchase ammo and new weapons.
-      ActionScript: Me. / Code Hooks: Insomniac UI Engineers / Art and UX:
-      Insomniac UI Art Team
     </div>
     <div id="projectSunsetChallengeScreenTutesProblemDescContent">
       I ended up implementing a bunch of the tutorials for the menu screens. The
       amps tutorial was particularly gnarly because it forced us to fix a bunch
       of corner cases that would soft-lock the player's save if they managed to
-      mash the controls at the precisely wrong moment. Amps Tutorial Flow
-      ActionScript: Me. / Code Hooks: Insomniac UI Engineers / Art and UX:
-      Insomniac UI Art Team
+      mash the controls at the precisely wrong moment.
     </div>
     <div id="projectSunsetChallengeHudProblemDescContent">
       Once the HUD messages were gray-boxed, I helped to migrate in the art from
-      the concepts that our Artists had created. ActionScript: Me. / Code Hooks:
-      Insomniac UI Engineers / Art and UX: Insomniac UI Art Team
+      the concepts that our Artists had created.
     </div>
     <div id="projectBugHuntChallengeHallProblemDescContent">
       A hallway on the lower level of the "Tribute" map. A bunch of effort went
