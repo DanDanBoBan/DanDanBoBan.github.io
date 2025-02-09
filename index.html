@@ -175,10 +175,10 @@
         stintId: "demiurgeStintB",
         label: "Project Oscar", //"MOBA Stealth and Cover",
         challenges: [
-          {
+          /*{
             label: "Rapid Prototyping",
             id: "projectOscarChallengeStrike",
-          },
+          },*/
           {
             id: "projectOscarChallengeStealth",
             label: "Expressive MOBA Stealth",
@@ -196,8 +196,16 @@
         role: "Input Collation and Data Routing using Unreal Blueprint",
         challenges: [
           {
-            label: "Input Routing",
-            id: "projectFoxtrotChallengeInput",
+            label: "Input Behavior Consistency",
+            id: "projectFoxtrotChallengeAction",
+          },
+          {
+            label: "Screen State Consistency",
+            id: "projectFoxtrotChallengeContext",
+          },
+          {
+            label: "UI Widget Styling",
+            id: "projectFoxtrotChallengeStyling",
           },
         ],
       },
@@ -459,13 +467,54 @@
     <div id="projectFoxtrotDescContent">
       <p>
         Project Foxtrot was a music game that helped users create and share
-        User-Generated content.
+        user-generated content.
       </p>
       <p>
-        Most of the work that I did involved the around-game and content
-        browsing menu flow.
+        Most of the work that I did involved the around-game menus and
+        play-session flow.
       </p>
     </div>
+    <div id="projectFoxtrotChallengeActionProblemDescContent">
+      I wanted to try to consolidate the behaviors of common input actions
+      across multiple screens. I implemented a system that utilized an
+      abstracted layer of input assets that defined common behaviors for actions
+      such as "Delete List Item". These assets helped a screen know which input
+      events to listen for, and how to react to these changes in input state. In
+      the "Delete List Item" example, the screens would know to use the
+      appropriate glyph on each screen, and would always trigger on the
+      appropriate input state change.
+    </div>
+    <div id="projectFoxtrotChallengeContextProblemDescContent">
+      <p>
+        I wanted to reduce the amount of conditional checking that needed to be
+        made during each input event. For example, if a screen featured multiple
+        lists that could be navigated, I didn't want to have to check which list
+        was highlighted when deciding which item to activate. Checking at the
+        time of input not only required a great deal of corner-cases, but it
+        also required any new scripters to have complete knowledge of what
+        states they might need to check for.
+      </p>
+      <p>
+        To get around this, I developed a "nested input context stack". For
+        example, in a screen with multiple lists, each list would be its own
+        input context that could be nested within the context of the screen as a
+        whole. When the list was highlighted, it would add itself to the stack
+        and vice versa. Furthermore, when a popup was placed on the stack and
+        blocked input from the context of the screen below, it would also block
+        input to the list nested within the screen.
+      </p>
+    </div>
+    <div id="projectFoxtrotChallengeStylingProblemDescContent">
+      We wanted to make it easier to consistently stylize widgets used in
+      various screns. For example, when an artists placed a text box, we didn't
+      want them to have to copy-paste all of the settings from text field to
+      text field. To avoid this problem, we created a "stylized text" widget
+      blueprint upon which an author could choose from a set of artist-defined
+      "text style" data assets. When the author chose a style, the properties
+      defined in the data asset were automatically applied to the widgets
+      within.
+    </div>
+    <!--
     <div id="projectFoxtrotChallengeInputProblemDescContent">
       There were a couple of rough edges in Fuser's menu input routing that I
       wanted to avoid in the next project. I wanted to find a better way to
@@ -483,17 +532,7 @@
       These data assets allowed us to reference action assets from any screen
       with the assurance that the screens would react to them consistently.
     </div>
-    <div id="projectFoxtrotChallengeInputProblemDescContent">
-      <p>
-        This was mostly focused on ushering properties from data objects into
-        the correct widgets in the menus using the Unreal Motion Graphics tools.
-      </p>
-      <p>
-        I was particularly proud of the work I did to work I did to consolidate
-        input functionality into data assets in order to make input scripting
-        more consistent.
-      </p>
-    </div>
+  -->
     <div id="projectFuserSummary">
       <p>
         There was a really complex stretch at the beginning of Fuser where we
@@ -720,11 +759,11 @@
           <div id="%ID%ProblemDesc"></div>
         </div>
         <div id="%ID%Work" class="collapsed">
-          <div class="challengeSectionLabel">Work Done</div>
+          <!--<div class="challengeSectionLabel">Work Done</div>-->
           <div id="%ID%WorkDesc"></div>
         </div>
         <div id="%ID%Result" class="collapsed">
-          <div class="challengeSectionLabel">Result</div>
+          <!--<div class="challengeSectionLabel">Result</div>-->
           <div id="%ID%ResultDesc"></div>
         </div>
       </div>
