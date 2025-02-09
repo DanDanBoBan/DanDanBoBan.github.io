@@ -380,7 +380,11 @@
         released: "2013",
         platforms: "PS3, Xbox 360, PC",
         credits: [
-          { role: "Level Blockout", assignee: "Demiurge Design Team" },
+          {
+            role: "Level Blockout",
+            /*context: '"Tribute" map',*/
+            assignee: "Demiurge Design Team",
+          },
           { role: "Level Decoration", assignee: "Demiurge Art Team" },
           { role: "Game Mode Code", assignee: "Demiurge Engineering Team" },
           { role: "Base Game Development", assignee: "Gearbox Software" },
@@ -424,11 +428,63 @@
             id: "projectStationChallengeGame",
             label: "Gameplay Scripting",
             imgSrc: "screen-station-game.jpg",
+            credits: [
+              {
+                role: "Game Mode Scripting",
+                context: "Pinnale Station DLC",
+                assignee: "Dan Chretien",
+              },
+              {
+                role: "Level Design",
+                context: "Pinnale Station DLC",
+                assignee: "Demiurge Studios Design Team",
+              },
+              {
+                role: "Level Decoration",
+                context: "Pinnacle Station DLC",
+                assignee: "Demiurge Studios Art Team",
+              },
+              {
+                role: "Code",
+                context: "Pinnacle Station DLC",
+                assignee: "Demiurge Studios Engineering Team,",
+              },
+              {
+                role: "Base Game Development",
+                assignee: "BioWare",
+              },
+            ],
           },
           {
             id: "projectStationChallengeBoard",
             label: "Scoreboard Scripting",
             imgSrc: "screen-station-board.jpg",
+            credits: [
+              {
+                role: "Scoreboard Scripting",
+                context: "Pinnale Station DLC",
+                assignee: "Dan Chretien",
+              },
+              {
+                role: "Level Design",
+                context: "Pinnale Station DLC",
+                assignee: "Demiurge Studios Design Team",
+              },
+              {
+                role: "Level Decoration",
+                context: "Pinnacle Station DLC",
+                assignee: "Demiurge Studios Art Team",
+              },
+              {
+                role: "Code",
+                context: "Pinnacle Station DLC",
+                assignee: "Demiurge Studios Engineering Team,",
+              },
+              {
+                role: "Base Game Development",
+                assignee: "BioWare",
+              },
+            ],
           },
         ],
       },
@@ -442,6 +498,7 @@
         credits: [
           {
             role: "Level Blockout, Wave Composition",
+            context: "survival maps",
             assignee: "Dan Chretien",
           },
           { role: "Level Art", assignee: "Demiurge Studios Art Team" },
@@ -787,7 +844,7 @@
       <div>
         <i>
           <span
-            >%ROLE%<span class="%CONTEXTVISIBILITY%"> %CONTEXT%</span>:
+            >%ROLE%<span class="%CONTEXTVISIBILITY%"> (%CONTEXT%)</span>:
             %ASSIGNEE%</span
           >
         </i>
