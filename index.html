@@ -754,6 +754,7 @@
           <!--<div class="challengeSectionLabel">Result</div>-->
           <div id="%ID%ResultDesc"></div>
         </div>
+        <div id="%ID%Credits" class="collapsed"></div>
       </div>
     </div>
     <div id="templateChallengeThumb">
@@ -1416,6 +1417,45 @@
 
             document.getElementById(challengeIdText + "ImgSection").innerHTML +=
               "\n" + thumbnailTextCurrent + "\n";
+          }
+
+          if (!projects[projectIndex].challenges[challengeIndex].credits) {
+            projects[projectIndex].challenges[challengeIndex].credits =
+              projects[projectIndex].credits;
+          }
+          //if the challenge has credits ...
+          if (projects[projectIndex].challenges[challengeIndex].credits) {
+            //for each credit in the challenges object ...
+            for (creditIndex in projects[projectIndex].challenges[
+              challengeIndex
+            ].credits) {
+              //cache off the credit object
+              currentCredit =
+                projects[projectIndex].challenges[challengeIndex].credits[
+                  creditIndex
+                ];
+
+              //reveal credits element
+              creditsEl = document.getElementById(challengeIdText + "Credits");
+              creditsEl.classList.remove("collapsed");
+
+              creditText = creditTemplateString;
+              creditText = ReplaceAll(
+                creditText,
+                "%ID%",
+                projects[projectIndex].challenges[challengeIndex].id +
+                  "Credit" +
+                  creditIndex
+              );
+              creditText = ReplaceAll(creditText, "%ROLE%", currentCredit.role);
+              creditText = ReplaceAll(
+                creditText,
+                "%ASSIGNEE%",
+                currentCredit.assignee
+              );
+
+              creditsEl.innerHTML += creditText;
+            }
           }
 
           //Reveal problem work and results
