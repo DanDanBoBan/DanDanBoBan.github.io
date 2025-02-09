@@ -190,14 +190,14 @@
         ],
       },
       {
-        id: "projectCat",
+        id: "projectFoxtrot",
         stintId: "harmonixStintA",
         label: "Unreleased Music Game",
         role: "Input Collation and Data Routing using Unreal Blueprint",
         challenges: [
           {
             label: "Input Routing",
-            id: "projectCatChallengeInput",
+            id: "projectFoxtrotChallengeInput",
           },
         ],
       },
@@ -456,7 +456,34 @@
       a burst-fire cone-damage sword attack by using components from our brawler
       and SMG characters.
     </div>
-    <div id="projectCatChallengeInputProblemDescContent">
+    <div id="projectFoxtrotDescContent">
+      <p>
+        Project Foxtrot was a music game that helped users create and share
+        User-Generated content.
+      </p>
+      <p>
+        Most of the work that I did involved the around-game and content
+        browsing menu flow.
+      </p>
+    </div>
+    <div id="projectFoxtrotChallengeInputProblemDescContent">
+      There were a couple of rough edges in Fuser's menu input routing that I
+      wanted to avoid in the next project. I wanted to find a better way to
+      route input that didn't rely on a big if/else statement in the
+      on-button-down function. I also wanted to consolidate the way common
+      actions were processed in various screens.
+    </div>
+    <div id="projectFoxtrotChallengeInputWorkDescContent">
+      To solve this, I created data assets that acted as an abstraction of the
+      different input actions that were shared across screens. These data assets
+      contained information such as the input actions that the screens were
+      listening for changes in.
+    </div>
+    <div id="projectFoxtrotChallengeInputResultDescContent">
+      These data assets allowed us to reference action assets from any screen
+      with the assurance that the screens would react to them consistently.
+    </div>
+    <div id="projectFoxtrotChallengeInputProblemDescContent">
       <p>
         This was mostly focused on ushering properties from data objects into
         the correct widgets in the menus using the Unreal Motion Graphics tools.
