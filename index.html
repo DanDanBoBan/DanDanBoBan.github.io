@@ -214,13 +214,12 @@
         stintId: "harmonixStintA",
         label: "Fuser",
         role: "Gameplay Prototyping And UI Scripting",
-        summaryId: "projectFuserSummary",
         challenges: [
-          {
+          /*{
             label: "Crate Screen",
             id: "FuserCrate",
             imgSrc: "screen-fuser-crate.png",
-          },
+          },*/
           {
             label: "Main Menu",
             id: "FuserMain",
@@ -533,24 +532,7 @@
       with the assurance that the screens would react to them consistently.
     </div>
   -->
-    <div id="projectFuserSummary">
-      <p>
-        There was a really complex stretch at the beginning of Fuser where we
-        were trying develop a prototype that had the potential to be released on
-        a variety of platforms. We wanted to take the amazing music-mashing
-        technology that Harmonix’s engineers had developed for DropMix and
-        demonstrate it’s potential on Consoles and PC. We had to take the act of
-        grabbing a disc and smacking it onto a turntable feel satisfying in VR,
-        on a gamepad, and when using a keyboard/mouse. We ended up using a
-        virtual ‘hand’ that could be driven by whatever input device the player
-        was using.
-      </p>
-      <p>
-        Once the contract had been signed and the project entered production, I
-        helped with UI scripting - mostly surrounding populating text fields and
-        images with the appropriate data.
-      </p>
-    </div>
+
     <div id="projectFeralChallengeThreeDeeProblemDescContent">
       This was a fun exercise in figuring out how to place information panels in
       a way that the player could explore them and find the information they
@@ -593,29 +575,35 @@
       others, they would be diving into deep trenches and then battling their
       way back up.
     </div>
+    <div id="projectFuserDescContent">
+      Fuser took the mashup-making magic of Dropmix and brought it to consoles.
+      Players were able make and share mixes.
+    </div>
     <div id="FuserCrateProblemDescContent">
-      The Crate Creation Screen is where the player would build a loadout of the
-      music-creation content that they would be bringing into the game. This
-      screen features a good example of a tab list. I did a bunch of work to
-      make it easier for artists and scripters to change those on the fly in a
-      consistent and human-error-resistant way. I did most of the scripting on
-      the song-selection tab. Blueprint Scripting: Me and the programmers at
-      Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
-      Team
+      The Crate Screen made good use of a lot of the reusable widget kit that we
+      built up for the screens in Fuser. A main frame widget had a space for a
+      screen title, Blueprint Scripting: Me and the programmers at Harmonix /
+      Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
     </div>
     <div id="FuserMainProblemDescContent">
-      The main menu for fuser. It features a skeleton footprint for each element
-      that requires data to be fetched dynamically from the server. I
-      coordinated with the artists in the efforts to systemize the behavior of
-      panels that needed a skeleton to ensure consistent styling and
-      functionality. Blueprint Scripting: Me and the programmers at Harmonix /
-      Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art Team
+      The main menu was a great example of our live data-fetching work. When
+      players opened the menu, the game would begin fetching updates for
+      promotions and featured mixes and then display them once the information
+      was received. The art team was critical in making sure we were accounting
+      for all of the different states that a panel's skeleton would need to
+      account for and they came up with a great visual language for each of
+      those states. These states included things like "fetching data", "fetch
+      failed" and "no data found". Blueprint Scripting: Me and the programmers
+      at Harmonix / Code Hooks: Harmonix Engineers / Art and UX: Harmonix UI Art
+      Team
     </div>
     <div id="FuserSettingsProblemDescContent">
       Fuser's settings screen. For some reason, finding good ways to organize
-      settings data and widgets is super satisfying for me. Blueprint Scripting:
-      Me and the programmers at Harmonix / Code Hooks: Harmonix Engineers / Art
-      and UX: Harmonix UI Art Team
+      settings data and widgets is super satisfying for me. Each of the widget
+      blueprints just treats its current value like a number, and when that
+      number changes, we adjust the appropriate settings accordingly. Blueprint
+      Scripting: Me and the programmers at Harmonix / Code Hooks: Harmonix
+      Engineers / Art and UX: Harmonix UI Art Team
     </div>
     <div id="projectFeralChallengeThreeDeeProblemDescContent">
       <p>
