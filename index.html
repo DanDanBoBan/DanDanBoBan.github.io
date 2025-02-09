@@ -199,7 +199,7 @@
       {
         id: "projectFoxtrot",
         stintId: "harmonixStintA",
-        label: "Unreleased Music Game",
+        label: "Unannounced Music Game",
         role: "Input Collation and Data Routing using Unreal Blueprint",
         released: "Unreleased",
         platforms: "Google Stadia",
@@ -790,10 +790,12 @@
   <div id="templates" class="collapsed">
     <div id="templateCredit">
       <div>
-        <span
-          >%ROLE%<span class="%CONTEXTVISIBILITY%"> %CONTEXT%</span>:
-          %ASSIGNEE%</span
-        >
+        <i>
+          <span
+            >%ROLE%<span class="%CONTEXTVISIBILITY%"> %CONTEXT%</span>:
+            %ASSIGNEE%</span
+          >
+        </i>
       </div>
     </div>
     <div id="templateNote">
@@ -804,7 +806,7 @@
       </div>
     </div>
     <div id="templateChallenge">
-      <div id="%ID%">
+      <div id="%ID%" class="mb-4">
         <div><h5 id="%ID%ProblemLabel"></h5></div>
         <div>
           <div id="%ID%ImgSection" class="collapsed"></div>
@@ -820,11 +822,11 @@
           <!--<div class="challengeSectionLabel">Result</div>-->
           <div id="%ID%ResultDesc"></div>
         </div>
-        <div id="%ID%Credits" class="collapsed"></div>
+        <div id="%ID%Credits" class="collapsed mt-2"></div>
       </div>
     </div>
     <div id="templateChallengeThumb">
-      <div class="ratio ratio-16x9">
+      <div class="ratio ratio-16x9 mb-1">
         <img id="%ID%ImgElement" style="" src="./images/loading.jpg" />
         <div>
           <button
@@ -844,19 +846,20 @@
       <div id="%ID%">
         <div
           id="divider%ID%"
-          class="container bg-dark collapsed"
+          class="container bg-dark collapsed mb-5"
           style="height: 3"
         ></div>
         <div class="container">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
               <div>
-                <h4>%LABEL% <i>(%RELEASED%)</i></h4>
+                <h4>%LABEL% (%RELEASED%)</h4>
               </div>
-              <div>%PLATFORMS%</div>
+              <div><i>%PLATFORMS%</i></div>
+              <div id="%ID%Desc" class="collapsed mt-2"></div>
             </div>
+            <div class="col-sm"></div>
             <div class="col-sm-6">
-              <div id="%ID%Desc" class="collapsed"></div>
               <div id="notesContainer%ID%" class="collapsed"></div>
               <div id="challengesContainer%ID%" class="collapsed"></div>
             </div>
@@ -865,7 +868,7 @@
       </div>
     </div>
     <div id="templateStint">
-      <div id="%ID%" class="container bg-dark text-white p-2">
+      <div id="%ID%" class="container bg-dark text-white p-2 mb-4">
         <div class="stint"><h3>%LABEL%</h3></div>
         <div class="stint stintDate %DATEVISIBLE%">
           %MONTHBEGIN% %YEARBEGIN% - %MONTHEND% %YEAREND%
