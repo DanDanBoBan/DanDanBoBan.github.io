@@ -199,7 +199,7 @@
       {
         id: "projectFoxtrot",
         stintId: "harmonixStintA",
-        label: "Unannounced Music Game",
+        label: "Project Foxtrot",
         role: "Input Collation and Data Routing using Unreal Blueprint",
         released: "Unreleased",
         platforms: "Google Stadia",
@@ -540,10 +540,16 @@
   <!--Long Entry Content-->
   <div id="content" class="collapsed">
     <div id="projectOscarDescContent">
-      Project Oscar was a tactical brawler reminiscent of a MOBA. The client had
-      soft-launched a real-time tactics project and found it was not meeting its
-      financial potential. Demiurge was tasked with taking over the project and
-      making it more profitable.
+      <p>
+        Project Oscar was a tactical brawler reminiscent of a MOBA. The client
+        had soft-launched a real-time tactics project and found it was not
+        meeting its financial potential. Demiurge was tasked with taking over
+        the project and making it more profitable.
+      </p>
+      <p>
+        My work on the project focused largely on using Unreal Blueprint to
+        stand up potential feature fixes quickly in order quickly decide
+      </p>
     </div>
     <div id="projectOscarChallengeStrike">
       <div id="projectOscarChallengeStrikeProblemDescContent">
@@ -600,7 +606,9 @@
       </p>
       <p>
         Most of the work that I did involved the around-game menus and
-        play-session flow.
+        play-session flow. I focused my efforts on developing workflows and
+        assets that made the screen-building process faster and less
+        error-prone.
       </p>
     </div>
     <div id="projectFoxtrotChallengeActionProblemDescContent">
@@ -706,8 +714,14 @@
       way back up.
     </div>
     <div id="projectFuserDescContent">
-      Fuser took the mashup-making magic of Dropmix and brought it to consoles.
-      Players were able make and share mixes.
+      <p>
+        Fuser took the mashup-making magic of Dropmix and brought it to
+        consoles, enabling players to make and share their mixes.
+      </p>
+      <p>
+        Most of my work involved requesting data from code and then routing the
+        data that was returned to the the appropriate fields on the screen.
+      </p>
     </div>
     <div id="FuserCrateProblemDescContent">
       The Crate Screen made good use of a lot of the reusable widget kit that we
@@ -716,19 +730,19 @@
     </div>
     <div id="FuserMainProblemDescContent">
       The main menu was a great example of our live data-fetching work. When
-      players opened the menu, the game would begin fetching updates for
-      promotions and featured mixes and then display them once the information
-      was received. The art team was critical in making sure we were accounting
-      for all of the different states that a panel's skeleton would need to
-      account for and they came up with a great visual language for each of
-      those states. These states included things like "fetching data", "fetch
-      failed" and "no data found".
+      players opened the menu, the game would ask the server for any promotions
+      and featured mixes which could be displayed once the information was
+      received. The art team was critical in making sure we were accounting for
+      all of the different states that a panel's skeleton would require and they
+      came up with a great visual language for each of those states. These
+      states included things like "fetching data", "fetch failed" and "no data
+      found".
     </div>
     <div id="FuserSettingsProblemDescContent">
-      Fuser's settings screen. For some reason, finding good ways to organize
-      settings data and widgets is super satisfying for me. Each of the widget
-      blueprints just treats its current value like a number, and when that
-      number changes, we adjust the appropriate settings accordingly.
+      For some reason, finding good ways to organize settings data and widgets
+      is super satisfying for me. Each of the widget blueprints just treats its
+      current value like a number, and when that number changes, we adjust the
+      appropriate settings accordingly.
     </div>
     <div id="projectFeralChallengeThreeDeeProblemDescContent">
       <p>
@@ -930,9 +944,7 @@
       <div class="container" id="containerForProjects%ID%"></div>
     </div>
     <div id="templateSocialLink">
-      <div>
-        <!--<a href="%URL%"">%LABEL%</a>-->
-      </div>
+      <li class="list-group-item"><!--<a href="%URL%"">%LABEL%</a>--></li>
     </div>
   </div>
 
@@ -957,7 +969,7 @@
       <div class="row">
         <div class="col-lg-12">
           <!--Summary-->
-          <div id="socialLinksDiv"></div>
+          <ul class="list-group list-group-horizontal" id="socialLinksDiv"></ul>
         </div>
       </div>
     </div>
