@@ -381,6 +381,16 @@
         platforms: "PS3, Xbox 360, PC",
         credits: [
           {
+            role: "Wave Composition",
+            context: '"Tribute" map',
+            assignee: "Dan Chretien",
+          },
+          {
+            role: "AI Markup",
+            context: '"Tribute" map',
+            assignee: "Dan Chretien and Demiurge Design Team",
+          },
+          {
             role: "Level Blockout",
             /*context: '"Tribute" map',*/
             assignee: "Demiurge Design Team",
@@ -392,7 +402,7 @@
         challenges: [
           {
             id: "projectBugHuntChallengeHall",
-            label: "Spawn Point Placement",
+            label: "Level Markup for AI Navigation",
             imgSrc: "screen-aliens-hall.jpg",
           },
           {
@@ -400,11 +410,11 @@
             label: "Enemy Wave Composition",
             imgSrc: "screen-aliens-late.jpg",
           },
-          {
+          /*{
             id: "projectBugHuntChallengeCorner",
             label: "Navigation Markup",
             imgSrc: "screen-aliens-corner.jpg",
-          },
+          },*/
         ],
       },
       {
@@ -693,13 +703,17 @@
         It was a fun opportunity to work with Flash’s 3D functionality.
       </p>
     </div>
-    <div id="projectSunsetSummary">
-      Most of the work I did on Sunset Overdrive involved data plumbing and
-      input routing. Our engineer would pass data into the screens and I used it
-      to populate the correct fields. A significant chunk of time went into
-      ensuring that the leaderboards worked.
+    <div id="projectSunsetDescContent">
+      <p>
+        Sunset Overdrive was a third-person shooter/platformer with an
+        irreverant tone.
+      </p>
+      <p>
+        Most of the work I did on this project was UI scripting. As data was
+        passed into the screen, I would send it to the appropriate fields.
+      </p>
     </div>
-    <div id="projectBugHuntSummary">
+    <div id="projectBugHuntDescContent">
       Bug Hunt is a wave-based, co-op PvE mode released for Aliens: Colonial
       Marines. By the time I was brought onto the project, most of the level
       layout was nearing completion. Most of the work I did involved scripting
@@ -707,16 +721,16 @@
       swamped, I used Excel to smooth out some of the edges in the scripting
       process to improve the workflow for the design team.
     </div>
-    <div id="projectStationSummary">
-      I worked as a designer on the team that put together Mass Effect: Pinnacle
-      Station. The project provided a bunch of awesome opportunities to wrap my
-      head around the Unreal's Kismet scripting system. Whipping up prototypes
-      for each game mode ended up being a total blast. I also managed to rig up
-      much of the scoreboard system using kismet. It was cool getting to kick
-      around in BioWare's conversation tools, which I used to set up the mission
-      selection conversation.
+    <div id="projectStationDescContent">
+      I worked as a designer on the team that put together Mass Effect's
+      "Pinnacle Station" DLC. The project provided a bunch of awesome
+      opportunities to wrap my head around the Unreal's Kismet scripting system.
+      Whipping up prototypes for each game mode ended up being a total blast. I
+      also managed to rig up much of the scoreboard system using kismet. It was
+      cool getting to kick around in BioWare's conversation tools, which I used
+      to set up the mission selection conversation.
     </div>
-    <div id="projectSmr">
+    <div id="projectSmrDescContent">
       The level design work that I did on Shoot Many Robots was primarily
       focused on the survival missions. These missions were wave-based, PvE
       arena battles for a side-scrolling shoot-em-up. I started each level with
@@ -801,7 +815,8 @@
     </div>
     <div id="projectSunsetChallengeResultsProblemDescContent">
       The Mission Results Screen. Mostly a matter of routing data passed in from
-      code into the appropriate UI elements.
+      code into the appropriate UI elements. Images were loaded and placed in
+      the proper locations.
     </div>
     <div id="projectSunsetChallengeShopProblemDescContent">
       Two-Hat Jack is a shop where the player can purchase ammo and new weapons.
@@ -817,10 +832,22 @@
       the concepts that our Artists had created.
     </div>
     <div id="projectBugHuntChallengeHallProblemDescContent">
-      A hallway on the lower level of the "Tribute" map. A bunch of effort went
-      into making sure the spawn points in the vents were positioned just right
-      so that players couldn't fall into the vents, but the aliens could still
-      climb out.
+      <p>
+        Spawn points needed to be placed in positions that would allow enemies
+        to be hidden from view when they spawned in. For example, I placed spawn
+        points for human enemies behind large containers or in side offices. A
+        bunch of effort went into making sure the alien spawn points in the
+        vents were positioned just right so that players couldn't fall into the
+        vents, but the aliens could still climb out.
+      </p>
+      <p>
+        In order to wall-climb and pounce around the levels, the xenomorphs used
+        hand-authored grip points. The grip points served as a great way to
+        prevent the player from just turtling up in a corner, as an alien could
+        come bounding over a stack of boxes at any moment. As we discovered
+        these turtling-points in playtests, I would add jump points to the walls
+        in order to give the aliens new paths to the player.
+      </p>
     </div>
     <div id="projectBugHuntChallengeLateProblemDescContent">
       A scene from later in the "Tribute" map. As players progress through the
@@ -829,12 +856,9 @@
       their base meshes.
     </div>
     <div id="projectBugHuntChallengeCornerProblemDescContent">
-      An outdoor scene in the "Tribute" map. In order to wall-climb and pounce
-      around the levels, the xenomorphs used hand-authored grip points. The grip
-      points served as a great way to prevent the player from just turtling up
-      in a corner, as an alien could come bounding over a stack of boxes at any
-      moment. Level Geo: Demiurge Art and Design team / Level Markup: Me / Code:
-      Demiurge and Gearbox Engineers / UI Art and UX: Gearbox UI Art Team
+      An outdoor scene in the "Tribute" map. Level Geo: Demiurge Art and Design
+      team / Level Markup: Me / Code: Demiurge and Gearbox Engineers / UI Art
+      and UX: Gearbox UI Art Team
     </div>
     <div id="projectStationChallengeGameProblemDescContent">
       A screenshot of the capture-and-hold game mode built for Pinnacle Station.
